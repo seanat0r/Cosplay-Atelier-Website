@@ -111,6 +111,7 @@ body {
 */
 .hero {
     width: 100vw;
+    max-width: none;
     margin-bottom: 1rem;
 }
 .hero-content {
@@ -172,38 +173,97 @@ body {
     font-weight: bold;
     font-size: clamp(1rem, 1.5vw, 1.5rem);
 }
-/*
-========================================================================================================================
-                                    Main
-========================================================================================================================
-*/
+
+/* ========================================================================================================================
+                                    MAIN & SECTIONS
+======================================================================================================================== */
+
 main {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: center; /* Zentriert alle Sektionen im Main-Bereich */
 }
 
 section {
-    width: 80%;
-    height: 100%;
-    margin: 2rem 0;
+    width: 85%;
+    max-width: 1200px;       /* Verhindert, dass der Inhalt auf riesigen Monitoren unschön auseinandergezogen wird */
+    margin: 4rem auto;       /* Das 'auto' zentriert die Sektion perfekt auf der Seite */
+    box-sizing: border-box;
 }
+
+/* ========================================================================================================================
+                                    CONTENT BLOCK (BILD & TEXT)
+======================================================================================================================== */
 
 .content-block {
     display: flex;
-    gap: 5%;
+    gap: 6%;                 /* Grosszügiger, moderner Abstand zwischen Bild und Text */
+    align-items: center;     /* Zentriert Text und Bild vertikal zueinander */
 }
+
+.content-block figure {
+    flex: 1;                 /* Bild nimmt exakt die Hälfte des Platzes ein */
+    margin: 0;
+    padding: 0;
+}
+
+
 
 .text-content {
-    align-self: center;
+    flex: 1;                 /* Text nimmt die andere Hälfte des Platzes ein */
 }
 
-.external-link {
-    margin: 1.5rem 0 0 0;
+.text-content p {
+    font-size: 1.05rem;
+    line-height: 1.75;       /* Erhöhter Zeilenabstand für maximale Lesbarkeit */
+    color: var(--text);
+    margin: 0;
 }
+
+/* ========================================================================================================================
+                                    EXTERNAL LINKS (SOCIAL BUTTONS)
+======================================================================================================================== */
+
+.external-link {
+    margin-top: 2.5rem;      /* Schafft spürbaren Abstand zum Haupttext oben */
+}
+
 .external-link > p {
-    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--accent-contrast); /* Nutzt dein dezentes Grau für den Hinweistext */
+    margin-bottom: 1rem;
+}
+
+.external-link ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 12px;               /* Abstand zwischen den Social-Buttons */
+    flex-wrap: wrap;         /* Lässt Buttons auf kleinen Bildschirmen automatisch umbrechen */
+}
+
+.external-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--highlight); /* Dein helles Beige als Button-Grundlage */
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: 8px;      /* Leicht abgerundete, moderne Ecken */
+    border: 1px solid rgba(33, 37, 41, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Eleganter Hover-Effekt: Buttons färben sich im Vereins-Rot und schweben leicht nach oben */
+.external-link a:hover {
+    background-color: var(--main-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(168, 46, 38, 0.2); /* Rötlicher Glow-Effekt beim Hovern */
 }
 /*
 ========================================================================================================================
