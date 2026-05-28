@@ -1,8 +1,7 @@
 <header class="main-header">
     <div class="logo-container">
         <!-- Logo-->
-        <img src="img/logo.svg" alt="Cosplay-Atelier Logo" class="logo-icon">
-        <span class="logo-text">Cosplay-Atelier</span>
+        <img src="/assets/img/logo.svg" alt="Cosplay-Atelier Logo" class="logo-icon">
     </div>
 
     <!-- Mobile Burger Menu -->

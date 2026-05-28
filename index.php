@@ -12,19 +12,23 @@
     <section class="content">
         <article class="content-block">
             <figure>
-                <img src="img/bild1.jpg" alt="Platzhalter Bild 1">
+                <img src="assets/img/Kiba.png" alt="">
             </figure>
             <div class="text-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium consequuntur cum dolor dolorum ipsum numquam perferendis quae tenetur ullam?</p>
-            </div>
-        </article>
-
-        <article class="content-block">
-            <figure>
-                <img src="img/bild2.jpg" alt="Platzhalter Bild 2">
-            </figure>
-            <div class="text-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et maxime minima quae qui rem reprehenderit vero. Id iure laudantium suscipit.</p>
+                <p>Willkommen beim Cosplay-Atelier, deiner Cosplay Family im Aargau!<br><br>
+                    Hier wird Fiktion zur Realität. Der Verein fördert den Zusammenhalt und die Gemeinschaft unter
+                    Cosplayern und Interessierten. Es wird gemeinsam gebastelt, Conventions besucht, eigene Events und
+                    Charity organisiert und durchgeführt, Videospiele gespielt, zusammen die Zeit verbracht… Der
+                    Fantasie sind keine Grenzen gesetzt.</p>
+                <div class ="external-link">
+                    <p>Folgt uns auch auf anderen Plattformen um immer auf dem Laufenden zu bleiben!</p>
+                    <ul>
+                        <li><a href="https://www.facebook.com/CosplayAtelier.ch/" target="_blank">Facebook</a></li>
+                        <li><a href="https://www.instagram.com/cosplayatelier.ch/" target="_blank">Instagram</a></li>
+                        <li><a href="https://cosplay-atelier.ch/discord" target="_blank">Discord</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCG9ZdVCMMVPZEbnB3jK1YDg/" target="_blank">Youtube</a></li>
+                    </ul>
+                </div>
             </div>
         </article>
     </section>
