@@ -175,35 +175,34 @@ body {
 }
 
 /* ========================================================================================================================
-                                    MAIN & SECTIONS
+                                    MAIN & SECTIONS | index
 ======================================================================================================================== */
 
 main {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Zentriert alle Sektionen im Main-Bereich */
+    align-items: center;
 }
 
 section {
     width: 85%;
-    max-width: 1200px;       /* Verhindert, dass der Inhalt auf riesigen Monitoren unschön auseinandergezogen wird */
-    margin: 4rem auto;       /* Das 'auto' zentriert die Sektion perfekt auf der Seite */
-    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 4rem auto;
 }
 
 /* ========================================================================================================================
-                                    CONTENT BLOCK (BILD & TEXT)
+                                    CONTENT BLOCK | index
 ======================================================================================================================== */
 
 .content-block {
     display: flex;
-    gap: 6%;                 /* Grosszügiger, moderner Abstand zwischen Bild und Text */
-    align-items: center;     /* Zentriert Text und Bild vertikal zueinander */
+    gap: 6%;
+    align-items: center;
 }
 
 .content-block figure {
-    flex: 1;                 /* Bild nimmt exakt die Hälfte des Platzes ein */
+    flex: 1;
     margin: 0;
     padding: 0;
 }
@@ -211,12 +210,12 @@ section {
 
 
 .text-content {
-    flex: 1;                 /* Text nimmt die andere Hälfte des Platzes ein */
+    flex: 1;
 }
 
 .text-content p {
     font-size: 1.05rem;
-    line-height: 1.75;       /* Erhöhter Zeilenabstand für maximale Lesbarkeit */
+    line-height: 1.75;
     color: var(--text);
     margin: 0;
 }
@@ -226,13 +225,13 @@ section {
 ======================================================================================================================== */
 
 .external-link {
-    margin-top: 2.5rem;      /* Schafft spürbaren Abstand zum Haupttext oben */
+    margin-top: 2.5rem;
 }
 
 .external-link > p {
     font-weight: 600;
     font-size: 0.95rem;
-    color: var(--accent-contrast); /* Nutzt dein dezentes Grau für den Hinweistext */
+    color: var(--accent-contrast);
     margin-bottom: 1rem;
 }
 
@@ -241,29 +240,143 @@ section {
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 12px;               /* Abstand zwischen den Social-Buttons */
-    flex-wrap: wrap;         /* Lässt Buttons auf kleinen Bildschirmen automatisch umbrechen */
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .external-link a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: var(--highlight); /* Dein helles Beige als Button-Grundlage */
+    background-color: var(--highlight);
     color: var(--text);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.9rem;
-    border-radius: 8px;      /* Leicht abgerundete, moderne Ecken */
+    border-radius: 8px;
     border: 1px solid rgba(33, 37, 41, 0.05);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Eleganter Hover-Effekt: Buttons färben sich im Vereins-Rot und schweben leicht nach oben */
 .external-link a:hover {
     background-color: var(--main-color);
     color: white;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(168, 46, 38, 0.2); /* Rötlicher Glow-Effekt beim Hovern */
+    box-shadow: 0 8px 20px rgba(168, 46, 38, 0.2);
+}
+/* ========================================================================================================================
+                                    ABOUT US SECTION
+======================================================================================================================== */
+
+.about-section {
+    width: 85%;
+    max-width: 1200px;
+    margin: 4rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 7rem;
+}
+
+.about-article {
+    display: flex;
+    gap: 6%;
+    align-items: center;
+}
+
+
+.about-article.reverse-layout {
+    flex-direction: row-reverse;
+}
+
+.about-article figure {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.about-article img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    filter: drop-shadow(0 15px 35px rgba(33, 37, 41, 0.06));
+}
+
+.content-text-about-us {
+    flex: 1;
+}
+
+.content-text-about-us h2 {
+    color: var(--main-color);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.content-text-about-us p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--text);
+    margin: 0;
+}
+
+/* ========================================================================================================================
+                                    SPONSOREN BEREICH
+======================================================================================================================== */
+
+.sponsor-section {
+    flex-direction: column;
+    background-color: var(--highlight);
+    padding: 4rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.sponsor-header h2 {
+    color: var(--text);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 3rem;
+}
+
+
+.sponsor-grid {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+.sponsor-card {
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(33, 37, 41, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 260px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sponsor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(33, 37, 41, 0.1);
+}
+
+.sponsor-card img {
+    max-width: 160px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.sponsor-card h3 {
+    color: var(--text);
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 /*
 ========================================================================================================================

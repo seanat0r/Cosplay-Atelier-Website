@@ -16,7 +16,8 @@
             </figure>
             <div class="text-content">
                 <p>Willkommen beim Cosplay-Atelier, deiner Cosplay Family im Aargau!</p>
-                <br> <p>Hier wird Fiktion zur Realität. Der Verein fördert den Zusammenhalt und die Gemeinschaft unter
+                <br>
+                <p>Hier wird Fiktion zur Realität. Der Verein fördert den Zusammenhalt und die Gemeinschaft unter
                     Cosplayern und Interessierten. Es wird gemeinsam gebastelt, Conventions besucht, eigene Events und
                     Charity organisiert und durchgeführt, Videospiele gespielt, zusammen die Zeit verbracht… Der
                     Fantasie sind keine Grenzen gesetzt.</p>

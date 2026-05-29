@@ -14,11 +14,11 @@
     <nav class="main-nav">
         <button class="close-menu-btn" aria-label="Menü schliessen">X</button>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Über uns</a></li>
-            <li><a href="#">News</a></li>
-            <li><a href="#">Fotogalerie</a></li>
-            <li><a href="#">Kontakt</a></li>
+            <li><a href="/index.php">Home</a></li>
+            <li><a href="/about_us.php">Über uns</a></li>
+            <li><a href="/news.php">News</a></li>
+            <li><a href="/photogalerie.php">Fotogalerie</a></li>
+            <li><a href="/contacts.php">Kontakt</a></li>
         </ul>
     </nav>
 </header>
