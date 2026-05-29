@@ -14,7 +14,7 @@ include "includes/header.php";
             <article class="about-article committee">
                 <figure>
                     <img src="/assets/img/committee.jpeg" alt="Vorstand">
-                    <figcaption>Von links nach rechts:<br>Kevin, Pascal, Florian, Astrid & Dimija</figcaption>
+                    <figcaption>Von links nach rechts:<br>Kevin, Pascal, Florian, Astrid & Michèle</figcaption>
                 </figure>
                 <div class="content-text-about-us">
                     <h2>Unser Vorstand</h2>
