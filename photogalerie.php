@@ -9,39 +9,31 @@ include "includes/header.php";
     <?php
     include 'includes/hero.php';
 
-    $delayCounter = 1;
-    $img = [[
-            "img" => "/assets/img/black.webp",
-    ],[
-            "img" => "/assets/img/black.webp",
-    ],[
-            "img" => "/assets/img/black.webp",
-    ],[
-            "img" => "/assets/img/black.webp",
-    ],[
-            "img" => "/assets/img/black.webp",
-    ],[
-            "img" => "/assets/img/black.webp",
-    ],[
-            "img" => "/assets/img/black.webp",
-    ],[
-            "img" => "/assets/img/black.webp",
-    ],[
-            "img" => "/assets/img/black.webp",
-    ],]
+    // 1. Hole alle Bilder
+    $allGalleryImg = glob('assets/img/gallery/*.{jpg,jpeg,png,svg,webp}', GLOB_BRACE);
+    rsort($allGalleryImg);
     ?>
 
     <section class="photo-gallery" id="galerie">
         <h2>Fotogalerie</h2>
         <div class="gallery-grid">
-            <?php foreach ($img as $imgItem): ?>
+            <?php
+            $i = 0;
 
-            <figure class="gallery-item" style="--animation-order: <?= $delayCounter++; ?>">
-                <img src="<?= $imgItem['img'] ?>" alt="Galerie Bild <?= $delayCounter ?>" loading="lazy">
-            </figure>
-
+            foreach ($allGalleryImg as $imgItem):
+                $i++;
+                $hiddenClass = ($i > 12) ? 'hidden' : '';
+                $visibleClass = ($i <= 12) ? 'is-visible' : '';
+                ?>
+                <figure class="gallery-item <?= $hiddenClass ?> <?= $visibleClass ?>" style="--animation-order: <?= $i; ?>">
+                    <img src="<?= $imgItem ?>" alt="Galerie Bild <?= $i ?>" loading="lazy">
+                </figure>
             <?php endforeach ?>
         </div>
+
+        <?php if (count($allGalleryImg) > 12): ?>
+            <button id="load-gallery">Weitere Bilder laden</button>
+        <?php endif; ?>
     </section>
 </main>
 

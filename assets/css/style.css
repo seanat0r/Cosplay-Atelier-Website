@@ -440,6 +440,10 @@ section {
     animation-delay: calc(var(--animation-order) * 0.1s);
 }
 
+.gallery-item.hidden {
+    display: none;
+}
+
 .gallery-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(33, 37, 41, 0.15);
@@ -456,6 +460,31 @@ section {
 
 .gallery-item:hover img {
     transform: scale(1.08);
+}
+
+#load-gallery {
+    display: block;
+    margin: 3rem auto 0 auto;
+    padding: 1rem 2.5rem;
+    background-color: transparent;
+    color: var(--main-color);
+    border: 2px solid var(--main-color);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#load-gallery:hover {
+    background-color: var(--main-color);
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#load-gallery:active {
+    transform: translateY(0);
 }
 
 @keyframes fadeInUp {

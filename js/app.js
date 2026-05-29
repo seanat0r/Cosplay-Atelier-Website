@@ -20,3 +20,23 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(item);
     });
 });
+
+//Photogalerie.php Load more Img
+const loadMoreBtn = document.getElementById('load-gallery');
+
+if (loadMoreBtn) {
+    loadMoreBtn.addEventListener('click', function() {
+        const hiddenItems = document.querySelectorAll('.gallery-item.hidden');
+
+        for (let i = 0; i < 12; i++) {
+            if (hiddenItems[i]) {
+                hiddenItems[i].classList.remove('hidden');
+                hiddenItems[i].classList.add('is-visible');
+            }
+        }
+
+        if (document.querySelectorAll('.gallery-item.hidden').length === 0) {
+            this.style.display = 'none';
+        }
+    });
+}
