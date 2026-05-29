@@ -1,3 +1,4 @@
+<html lang="de">
 <?php
 $pageTitle = "Cosplay-Atelier | Ueber uns";
 include "includes/head.php";
@@ -13,6 +14,7 @@ include "includes/header.php";
             <article class="about-article committee">
                 <figure>
                     <img src="/assets/img/committee.jpeg" alt="Vorstand">
+                    <figcaption>Von links nach rechts:<br>Kevin, Pascal, Florian, Astrid & Dimija</figcaption>
                 </figure>
                 <div class="content-text-about-us">
                     <h2>Unser Vorstand</h2>
@@ -26,6 +28,7 @@ include "includes/header.php";
             <article class="about-article mascot reverse-layout">
                 <figure>
                     <img src="/assets/img/Kiba_Gaming.png" alt="Unser Maskottchen beim Gamen">
+                    <figcaption>Unser Kiba!</figcaption>
                 </figure>
                 <div class="content-text-about-us">
                     <h2>Unser Maskottchen Kiba</h2>
@@ -48,3 +51,4 @@ include "includes/header.php";
 <?php
 include "includes/footer.php";
 ?>
+</html>

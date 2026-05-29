@@ -1,3 +1,4 @@
+<?php $currentPage = basename($_SERVER['PHP_SELF']); ?>
 <header class="main-header">
     <div class="logo-container">
         <!-- Logo-->
@@ -14,11 +15,11 @@
     <nav class="main-nav">
         <button class="close-menu-btn" aria-label="Menü schliessen">X</button>
         <ul>
-            <li><a href="/index.php">Home</a></li>
-            <li><a href="/about_us.php">Über uns</a></li>
-            <li><a href="/news.php">News</a></li>
-            <li><a href="/photogalerie.php">Fotogalerie</a></li>
-            <li><a href="/contacts.php">Kontakt</a></li>
+            <li><a href="/index.php" <?php echo $currentPage === 'index.php' ? 'class="active"' : ''; ?>>Home</a></li>
+            <li><a href="/about_us.php" <?php echo $currentPage === 'about_us.php' ? 'class="active"' : ''; ?>>Über uns</a></li>
+            <li><a href="/news.php" <?php echo $currentPage === 'news.php' ? 'class="active"' : ''; ?>>News</a></li>
+            <li><a href="/photogalerie.php" <?php echo $currentPage === 'photogalerie.php' ? 'class="active"' : ''; ?>>Fotogalerie</a></li>
+            <li><a href="/contacts.php" <?php echo $currentPage === 'contacts.php' ? 'class="active"' : ''; ?>>Kontakt</a></li>
         </ul>
     </nav>
 </header>

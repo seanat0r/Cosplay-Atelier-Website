@@ -1,3 +1,4 @@
+<html lang="de">
 <?php
 $pageTitle = "Cosplay-Atelier | Ueber uns";
 include "includes/head.php";
@@ -16,4 +17,4 @@ include "includes/header.php";
 <?php
 include "includes/footer.php";
 ?>
-
+</html>

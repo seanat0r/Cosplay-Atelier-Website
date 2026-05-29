@@ -1,3 +1,4 @@
+<html lang="de">
 <?php
     $pageTitle = "Cosplay-Atelier | Home";
     include "includes/head.php";
@@ -40,4 +41,4 @@
 <?php
     include "includes/footer.php";
 ?>
-
+</html>
