@@ -211,8 +211,6 @@ section {
     padding: 0;
 }
 
-
-
 .text-content {
     flex: 1;
 }
@@ -400,7 +398,264 @@ section {
 ======================================================================================================================== */
 
 /* ========================================================================================================================
-                                    FOTOGALERIE
+                                    CONTACTS, IMPRESSUM
+======================================================================================================================== */
+
+/* --- Sub-Navigation --- */
+.sub-nav {
+    width: 100%;
+    margin: 0 auto 2rem auto;
+    padding: 1rem 0;
+}
+
+.sub-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.sub-nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text);
+    background-color: var(--highlight);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 10px rgba(33, 37, 41, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sub-nav a:hover {
+    background-color: var(--main-color);
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(33, 37, 41, 0.12);
+}
+
+.sub-nav a:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(33, 37, 41, 0.05);
+}
+
+/* --- Contacts/ Impressum (Cards) --- */
+.contacts-section h2 {
+    color: var(--main-color);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.contact-card {
+    background-color: var(--highlight);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(33, 37, 41, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(33, 37, 41, 0.1);
+}
+
+.contact-card h3 {
+    color: var(--main-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    border-bottom: 2px solid var(--background-color);
+    padding-bottom: 0.5rem;
+}
+
+.contact-card p {
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+}
+
+.contact-card a {
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-card a:hover {
+    color: var(--main-color);
+}
+
+/* --- Forms (Split-Layout) --- */
+.membership-layout {
+    display: flex;
+    gap: 5%;
+    align-items: flex-start;
+}
+
+.form-info {
+    flex: 1;
+}
+
+.form-info h2 {
+    color: var(--main-color);
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.form-info p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+}
+
+.form-container {
+    flex: 1;
+    background-color: var(--highlight);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(33, 37, 41, 0.05);
+}
+
+/* --- CTA & Kiba --- */
+.cta-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.cta-text {
+    flex: 1;
+}
+
+.mascot-container {
+    margin: 0;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.mascot-img {
+    max-width: 160px;
+    height: auto;
+    object-fit: contain;
+    animation: floatMascot 4s ease-in-out infinite;
+}
+
+.greeting-text {
+    font-size: 1.3rem !important;
+    font-weight: 700;
+    color: var(--main-color);
+    margin-bottom: 0;
+}
+
+@keyframes floatMascot {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* --- Forms input & label --- */
+.mitglied-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.checkbox label {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.submit-btn {
+    width: 100%;
+    display: block;
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    background-color: var(--main-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(168, 46, 38, 0.2);
+    filter: brightness(1.1);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* --- Mobile (Responsive) --- */
+@media (max-width: 900px) {
+    .membership-layout {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .form-container {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .mascot-container {
+        margin-top: 1.5rem;
+    }
+}
+/* ========================================================================================================================
+                                    Photo galleria
 ======================================================================================================================== */
 .photo-gallery h2 {
     text-align: center;
@@ -533,4 +788,38 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+/*
+========================================================================================================================
+                                    DGVO
+========================================================================================================================
+*/
+
+.content-container {
+    width: 85%;
+    max-width: 800px;
+    margin: 2rem auto 4rem auto;
+    padding-top: 100px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.content-container h2 {
+    color: var(--main-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content-container h3 {
+    margin-top: 2rem;
+    color: var(--main-color);
+}
+
+.content-container p, .content-container ul {
+    margin-bottom: 1rem;
+}
+
+.content-container ul {
+    padding-left: 20px;
 }

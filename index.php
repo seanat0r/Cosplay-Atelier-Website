@@ -11,20 +11,22 @@
     ?>
 
     <section class="content">
+        <?php
+        require_once './src/markdownPraser.php';
+        $dataPath = __DIR__ . "/content/index/index.md";
+        $pageData = markdownParser($dataPath);
+        ?>
         <article class="content-block">
             <figure>
                 <img src="assets/img/Kiba.png" alt="">
             </figure>
             <div class="text-content">
-                <p>Willkommen beim Cosplay-Atelier, deiner Cosplay Family im Aargau!</p>
+                <p><?=htmlspecialchars($pageData['title'] ?? 'Verein') ?>   </p>
                 <br>
-                <p>Hier wird Fiktion zur Realität. Der Verein fördert den Zusammenhalt und die Gemeinschaft unter
-                    Cosplayern und Interessierten. Es wird gemeinsam gebastelt, Conventions besucht, eigene Events und
-                    Charity organisiert und durchgeführt, Videospiele gespielt, zusammen die Zeit verbracht… Der
-                    Fantasie sind keine Grenzen gesetzt.</p>
+                <?= $pageData['htmlContent'] ?>
 
                 <div class="external-link">
-                    <p>Folgt uns auch auf anderen Plattformen, um immer auf dem Laufenden zu bleiben!</p>
+                    <p><?=htmlspecialchars($pageData['linkText'] ?? 'Verein') ?></p>
                     <ul>
                         <li><a class="facebook" href="https://www.facebook.com/CosplayAtelier.ch/" target="_blank">Facebook</a></li>
                         <li><a class="instagram" href="https://www.instagram.com/cosplayatelier.ch/" target="_blank">Instagram</a></li>

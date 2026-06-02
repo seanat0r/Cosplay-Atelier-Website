@@ -9,8 +9,12 @@ include "includes/header.php";
     <?php
     include "includes/hero.php";
     ?>
+    <section class="instagram">
+        <!-- Instagram embedding -->
+    </section>
+    <section class="local-news">
 
-
+    </section>
 
 </main>
 
