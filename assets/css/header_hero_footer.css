@@ -1,0 +1,208 @@
+/* ========================================================================================================================
+                                    HEADER & NAV
+======================================================================================================================== */
+
+.main-header {
+    position: fixed;
+    z-index: 99;
+    height: 90px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4%;
+    background-color: var(--background-color);
+    border-bottom: 1px solid rgba(33, 37, 41, 0.1);
+}
+
+/* Logo */
+.logo-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo-icon {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+
+.logo-container:hover .logo-icon {
+    transform: scale(1.03);
+    filter: brightness(1.08);
+}
+
+.burger-menu-toggle,
+.close-menu-btn {
+    display: none;
+}
+
+/* Navigation */
+
+.main-nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.main-nav > ul {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 35px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    display: flex;
+    align-items: flex-end;
+}
+
+.main-nav a.active {
+    color: var(--main-color);
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 8px 0 0 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--main-color);
+}
+
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--main-color);
+
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+/*
+========================================================================================================================
+                                    Hero
+========================================================================================================================
+*/
+.hero {
+    width: 100vw;
+    max-width: none;
+    margin-bottom: 1rem;
+}
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: center;
+}
+.hero-content figure,
+.hero-text {
+    grid-column: 1;
+    grid-row: 1;
+}
+.hero-content figure {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.hero-content figure::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.45) 100%);
+    pointer-events: none;
+}
+.hero-content img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+.hero-text {
+    align-self: start;
+    padding: 6rem 0 4rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.hero-text h1,
+.hero-text p {
+    color: var(--background-color);
+    z-index: 1;
+    text-shadow:
+            1px 1px 2px rgba(0, 0, 0, 0.6),
+            0 4px 12px rgba(0, 0, 0, 0.3),
+            0 12px 30px rgba(0, 0, 0, 0.15);;
+}
+.hero-content h1 {
+    font-weight: bolder;
+    font-size: clamp(2rem, 5vw, 4.375rem);;
+}
+.hero-text p {
+    font-weight: bold;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+/*
+========================================================================================================================
+                                    Footer
+========================================================================================================================
+*/
+.main-footer {
+    background-color: var(--text);
+    padding: 40px 4%;
+}
+
+.main-footer,
+.main-footer a {
+    color: var(--background-color);
+    text-decoration: none;
+}
+
+.main-footer a:hover {
+    color: var(--main-color);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+}
+.impressum-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-links {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

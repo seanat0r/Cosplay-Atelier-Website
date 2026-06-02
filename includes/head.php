@@ -2,9 +2,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo isset($pageTitle) ? $pageTitle : 'Cosplay-Atelier'; ?></title>
+
     <link rel="stylesheet" href="/assets/css/reset.css">
     <link rel="stylesheet" href="/assets/css/color.css">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/header_hero_footer.css">
+
     <meta name="description" content="Offizielle Website des Cosplay-Ateliers">
 
     <meta property="og:title" content="Cosplay-Atelier">
