@@ -3,3 +3,6 @@ assets/img
 includes/send_mail.php
 **/config.php
 /config/*.php
+
+.idea
+.vscode
