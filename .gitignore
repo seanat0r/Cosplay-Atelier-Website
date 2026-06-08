@@ -7,3 +7,6 @@ includes/send_mail.php
 .idea
 .vscode
 .DS_Store
+
+README_config.md
+README_ftp.md
