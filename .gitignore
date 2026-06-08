@@ -6,3 +6,4 @@ includes/send_mail.php
 
 .idea
 .vscode
+.DS_Store
