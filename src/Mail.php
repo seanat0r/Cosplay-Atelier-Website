@@ -5,11 +5,11 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use \PHPMailer\PHPMailer\PHPMailer;
 
+require_once __DIR__ . '/MicrosoftOAuthTokenProvider.php';
+
 class Mail
 {
-    private string $recipientEmail = "kontakt@cosplay-atelier.ch";
     private string $recipientName = "Cosplay-Atelier Vorstand";
-    private string $senderDomain = "cosplay-atelier.ch";
     private int $rateLimit = 3;
     private string $allowedOrigin = "https://cosplay-atelier.ch";
 
@@ -142,7 +142,7 @@ class Mail
 
         // plz
         $plz = $this->cleanStringInput($_POST['plz'] ?? null);
-        if (empty($plz) || mb_strlen($plz) > 4) {
+        if (empty($plz) || mb_strlen($plz) < 4) {
             $failed[] = "plz/city is invalid";
         }
 
@@ -235,20 +235,82 @@ class Mail
         }
 
         try {
+            $localEnv = is_file(BASE_PATH . '/.env')
+                ? parse_ini_file(BASE_PATH . '/.env', false, INI_SCANNER_RAW)
+                : [];
+            if (!is_array($localEnv)) {
+                $localEnv = [];
+            }
+
+            $setting = static function (string $key, string $default = '') use ($localEnv): string {
+                $value = getenv($key);
+                return $value !== false ? $value : (string) ($localEnv[$key] ?? $default);
+            };
+
+            $smtpEmail = trim($setting('MAIL_EMAIL'));
+            $smtpUsername = trim($setting('MAIL_USERNAME', $smtpEmail));
+            $smtpPassword = $setting('MAIL_PASSWORD');
+            $smtpPort = filter_var(trim($setting('MAIL_PORT', '587')), FILTER_VALIDATE_INT,
+                ['options' => ['min_range' => 1, 'max_range' => 65535]]);
+            $smtpHost = trim($setting('MAIL_HOST'));
+            $encryption = strtolower(trim($setting('MAIL_ENCRYPTION', 'starttls')));
+            $authMode = strtolower(trim($setting('MAIL_AUTH_MODE', $setting('MAIL_AUTH', 'password'))));
+
+            $smtpEncryption = match ($encryption) {
+                'starttls', 'tls' => PHPMailer::ENCRYPTION_STARTTLS,
+                'smtps', 'ssl' => PHPMailer::ENCRYPTION_SMTPS,
+                default => null,
+            };
+            $authMode = match ($authMode) {
+                'password', 'basic', 'false', '0' => 'password',
+                'oauth2', 'xoauth2', 'true', '1' => 'oauth2',
+                default => '',
+            };
+
+            if (!filter_var($smtpEmail, FILTER_VALIDATE_EMAIL) || $smtpUsername === '' ||
+                $smtpHost === '' || $smtpPort === false || $smtpEncryption === null || $authMode === '') {
+                return $this->reportError($response, 500, 'Internal Server Error #001');
+            }
+
+            if ($authMode === 'password' && $smtpPassword === '') {
+                return $this->reportError($response, 500, 'Internal Server Error #002');
+            }
+
+            $tenant = trim($setting('MAIL_OAUTH_TENANT'));
+            $clientId = trim($setting('MAIL_OAUTH_CLIENT_ID'));
+            $clientSecret = $setting('MAIL_OAUTH_CLIENT_SECRET');
+            if ($authMode === 'oauth2' &&
+                (!preg_match('/^[a-zA-Z0-9.-]+$/', $tenant) || $clientId === '' || $clientSecret === '')) {
+                return $this->reportError($response, 500, 'Internal Server Error #003');
+            }
+
             // send mail
             $this->mailer->isSMTP();
-            $this->mailer->Host = $this->allowedOrigin;
-            $this->mailer->SMTPAuth = true;
-            $this->mailer->Username   = 'deine-email@example.com';
-            $this->mailer->Password   = 'dein-sicheres-passwort';
-            $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $this->mailer->Port       = 587;
+            $this->mailer->Host       = $smtpHost;
+            $this->mailer->SMTPAuth   = true;
+            $this->mailer->Username   = $smtpUsername;
 
-            $this->mailer->setFrom($data['email'], $data['name']);
-            $this->mailer->addAddress($this->recipientEmail, $this->recipientName);
+            if ($authMode === 'oauth2') {
+                $this->mailer->AuthType = 'XOAUTH2';
+                $this->mailer->setOAuth(new MicrosoftOAuthTokenProvider(
+                    $smtpUsername, $tenant, $clientId, $clientSecret
+                ));
+            } else {
+                $this->mailer->AuthType = '';
+                $this->mailer->Password = $smtpPassword;
+            }
+
+            $this->mailer->SMTPSecure = $smtpEncryption;
+            $this->mailer->Port       = $smtpPort;
+
+            $this->mailer->setFrom($smtpEmail, 'Cosplay-Atelier');
+            $this->mailer->addReplyTo($data['email'], $data['name']);
+            $this->mailer->addAddress(trim($setting('MAIL_RECIPIENT', $smtpEmail)), $this->recipientName);
+            $this->mailer->CharSet = PHPMailer::CHARSET_UTF8;
+            $this->mailer->Encoding = PHPMailer::ENCODING_QUOTED_PRINTABLE;
 
             $this->mailer->Subject = "Kontaktanfrage von " . $data['name'];
-            $this->mailer->Body = "
+            $this->mailer->Body = "\n\n
                 Möchte Mitglied werden: " . $data['name'] . "\n\n
                 Daten:\n
                 Adresse: " . $data['address'] . "\n
@@ -267,7 +329,7 @@ class Mail
                 ->withHeader('Location', "/contacts")
                 ->withStatus(303);
 
-        } catch (Error|\PHPMailer\PHPMailer\Exception $e) {
+        } catch (Throwable $e) {
             return $this->reportError($response, 500, "Internal Server Error");
         }
     }

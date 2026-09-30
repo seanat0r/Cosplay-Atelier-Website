@@ -8,6 +8,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../config.php';
 require BASE_PATH . '/src/PageLoader.php';
 require BASE_PATH . '/src/MarkdownParser.php';
+require BASE_PATH . '/src/Mail.php';
 
 $app = AppFactory::create();
 

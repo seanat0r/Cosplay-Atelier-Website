@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/assets/css/color.css">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/header_hero_footer.css">
+    <link rel="stylesheet" href="/assets/css/contacts.css">
 
     <meta name="description" content="Offizielle Website des Cosplay-Ateliers">
 

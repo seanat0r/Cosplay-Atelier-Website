@@ -93,3 +93,11 @@ Wenn ihr ein Bild im News-Beitrag anzeigen wollt, ladet das Foto in den Ordner `
 ## FTP
 
 Beim Hochladen auf Hostpoint ist `public/` das Webverzeichnis. Die internen Ordner und die Konfiguration dürfen nicht im Document Root liegen.
+
+---
+
+## Error Code
+
+- `#001`: Mail angaben, sind leer (nicht passwort)
+- `#002`: Mail passwort ist leer
+- `#003`: Microsoft OAUTH2 konnte sich nicht initialisieren.

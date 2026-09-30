@@ -4,4 +4,8 @@
     --text: rgb(33, 37, 41);
     --accent-contrast: rgb(108, 117, 125);
     --highlight: rgb(235, 235, 230);
+
+    --success: rgb(46, 125, 50);
+    --success-bg: rgb(237, 247, 237);
+    --failed-bg: rgb(253, 237, 237);
 }
