@@ -1,8 +1,11 @@
 content
-assets/img
-includes/send_mail.php
-**/config.php
+/public/assets/img/
+src/send_mail.php
+config.php
 /config/*.php
+/vendor
+/downloads
+Dockerfile
 
 .idea
 .vscode
@@ -10,3 +13,5 @@ includes/send_mail.php
 
 README_config.md
 README_ftp.md
+
+.env

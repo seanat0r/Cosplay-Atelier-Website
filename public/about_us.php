@@ -1,17 +1,18 @@
 <html lang="de">
 <?php
+require_once __DIR__ . '/../config.php';
 $pageTitle = "Cosplay-Atelier | Ueber uns";
-include "includes/head.php";
-include "includes/header.php";
+include BASE_PATH . "/includes/head.php";
+include BASE_PATH . "/includes/header.php";
 ?>
 
     <main>
         <?php
-        include "includes/hero.php";
+        include BASE_PATH . "/includes/hero.php";
 
-        require_once './src/markdownPraser.php';
-        $dataPathCommittee = __DIR__ . "/content/about_us/vorstand.md";
-        $dataPathKiba = __DIR__ . "/content/about_us/kiba.md";
+        require_once BASE_PATH . '/src/markdownPraser.php';
+        $dataPathCommittee = BASE_PATH . "/content/about_us/vorstand.md";
+        $dataPathKiba = BASE_PATH . "/content/about_us/kiba.md";
 
         $pageDataCommittee = markdownParser($dataPathCommittee);
         $pageDataKiba = markdownParser($dataPathKiba);
@@ -21,7 +22,7 @@ include "includes/header.php";
         <section class="about-section">
             <article class="about-article committee">
                 <figure>
-                    <img src="/assets/img/committee.jpeg" alt="Vorstand">
+                    <img src="assets/img/committee.jpeg" alt="Vorstand">
                     <figcaption>Von links nach rechts:<br><?= htmlspecialchars($pageDataCommittee['bildbeschreibung'] ?? 'Vorstand') ?></figcaption>
                 </figure>
                 <div class="content-text-about-us">
@@ -32,7 +33,7 @@ include "includes/header.php";
 
             <article class="about-article mascot reverse-layout">
                 <figure>
-                    <img src="/assets/img/Kiba_Gaming.png" alt="Unser Maskottchen beim Gamen">
+                    <img src= "assets/img/Kiba_Gaming.png" alt="Unser Maskottchen beim Gamen">
                     <figcaption>Unser Kiba!</figcaption>
                 </figure>
                 <div class="content-text-about-us">
@@ -43,7 +44,7 @@ include "includes/header.php";
 
             <article class="about-article sponsor-section">
                 <?php
-                include "includes/data/sponsor.php";
+                include BASE_PATH . "/includes/data/sponsor.php";
                 ?>
             </article>
         </section>
@@ -51,6 +52,6 @@ include "includes/header.php";
     </main>
 
 <?php
-include "includes/footer.php";
+include BASE_PATH . "/includes/footer.php";
 ?>
 </html>

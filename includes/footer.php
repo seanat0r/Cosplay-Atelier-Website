@@ -6,7 +6,7 @@
         <ul class="footer-links">
             <li><a href="/contacts.php#contacts">Impressum</a></li>
             <li><a href="/dsgvo.php">Datenschutzerklärung</a></li>
-            <li><a href="#">Statuten</a></li>
+            <li><a href="/bylaws.php">Statuten</a></li>
         </ul>
     </div>
 </footer>

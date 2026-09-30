@@ -24,5 +24,5 @@
     <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#fafafa">
 
-    <script src="/js/app.js" defer></script>
+    <script src="/assets/js/app.js" defer></script>
 </head>

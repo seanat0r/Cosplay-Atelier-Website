@@ -452,6 +452,14 @@ section {
     transform: translateY(0);
 }
 
+.info {
+    font-weight: normal;
+    font-size: 0.8rem;
+}
+.info-symbol {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
 /* --- Mobile (Responsive) --- */
 @media (max-width: 900px) {
     .membership-layout {

@@ -1,15 +1,16 @@
 <html lang="de">
 <?php
+require_once __DIR__ . '/../config.php';
 $pageTitle = "Cosplay-Atelier | Kontakt & Mitgliedschaft";
-include "includes/head.php";
-include "includes/header.php";
+include BASE_PATH . '/includes/head.php';
+include BASE_PATH . '/includes/header.php';
 ?>
 
 <main>
     <?php
-    include "includes/hero.php";
-    require_once './src/markdownPraser.php';
-    $dataPath = __DIR__ . "/content/contacts/contacts.md";
+    include BASE_PATH . '/includes/hero.php';
+    require_once BASE_PATH . '/src/markdownPraser.php';
+    $dataPath = BASE_PATH . '/content/contacts/contacts.md';
     $pageData = markdownParser($dataPath);
     ?>
 
@@ -81,34 +82,34 @@ include "includes/header.php";
             </article>
 
             <article class="form-container">
-                <form action="includes/send_mail.php" method="POST" class="mitglied-form">
+                <form action="/send_mail.php" method="POST" class="mitglied-form">
                     <div class="form-group">
-                        <label for="name">Name und Vorname:</label>
+                        <label for="name">Name und Vorname*:</label>
                         <input type="text" id="name" name="name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="adresse">Adresse:</label>
+                        <label for="adresse">Adresse*:</label>
                         <input type="text" id="adresse" name="adresse" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="plz">PLZ und Ort:</label>
+                        <label for="plz">PLZ und Ort*:</label>
                         <input type="text" id="plz" name="plz" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="geburtsdatum">Geburtsdatum:</label>
+                        <label for="geburtsdatum">Geburtsdatum*:</label>
                         <input type="date" id="geburtsdatum" name="geburtsdatum" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="telefon">Telefonnummer:</label>
+                        <label for="telefon">Telefonnummer*:</label>
                         <input type="tel" id="telefon" name="telefon" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">E-Mail-Adresse:</label>
+                        <label for="email">E-Mail-Adresse*:</label>
                         <input type="email" id="email" name="email" required>
                     </div>
 
@@ -122,6 +123,7 @@ include "includes/header.php";
                     <input type="text" name="website" style="display:none;">
 
                     <button type="submit" class="submit-btn">Mitgliedsantrag senden</button>
+                    <p class="info">Felder mit <strong class="info-symbol">*</strong> markiert sind Pflichtfelder.</p>
                 </form>
             </article>
         </div>
@@ -130,6 +132,6 @@ include "includes/header.php";
 </main>
 
 <?php
-include "includes/footer.php";
+include BASE_PATH . '/includes/footer.php';
 ?>
 </html>

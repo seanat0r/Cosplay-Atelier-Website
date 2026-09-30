@@ -1,27 +1,28 @@
 <html lang="de">
 <?php
-$pageTitle = "Cosplay-Atelier | Ueber uns";
-include "includes/head.php";
-include "includes/header.php";
+require_once __DIR__ . '/../config.php';
+$pageTitle = "Cosplay-Atelier | News";
+include BASE_PATH . '/includes/head.php';
+include BASE_PATH . '/includes/header.php';
 ?>
 
 <main>
     <?php
-    include "includes/hero.php";
+    include BASE_PATH . '/includes/hero.php';
     ?>
     <section class="instagram-news">
         <!-- TODO: Instagram embedding -->
     </section>
     <section class="local-news">
         <?php
-            require_once __DIR__ . "/src/markdownPraser.php";
-            $files = glob("content/news/*.md");
+            require_once BASE_PATH . '/src/markdownPraser.php';
+            $files = glob(BASE_PATH . '/content/news/*.md');
             if (!empty($files)) {
                 rsort($files);
 
                 foreach ($files as $file) {
                     $articleData = markdownParser($file);
-                    $finalHtml = str_replace('src="', 'src="content/news/', $articleData['htmlContent']);
+                    $finalHtml = $articleData['htmlContent'];
                     ?>
                     <article class="news-card">
                         <header class="news-header">
@@ -44,6 +45,6 @@ include "includes/header.php";
 </main>
 
 <?php
-include "includes/footer.php";
+include BASE_PATH . '/includes/footer.php';
 ?>
 </html>

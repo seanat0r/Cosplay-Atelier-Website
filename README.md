@@ -1,5 +1,13 @@
 # Vereins-Webseite: Anleitung für Inhalte
 
+## Projektaufbau und Hosting
+
+`public/` ist das Webverzeichnis. Die Domain muss auf diesen Ordner zeigen; nur seine Dateien sollen direkt über den Browser erreichbar sein. Die PHP-Seiten und `public/assets/` liegen darin. `content/` enthält die Markdown-Texte, `includes/` die gemeinsamen Seitenteile, `src/` die Verarbeitung und `lib/` die Markdown-Bibliothek. Diese Ordner sowie `config.php` liegen ausserhalb des Webverzeichnisses.
+
+Lokal starten: `php -S localhost:8000 -t public` im Projektordner. Auf Hostpoint muss entweder das Document Root auf `public/` zeigen oder der Inhalt von `public/` in das dort konfigurierte Document Root kopiert werden, während die internen Ordner eine Ebene darüber liegen. In letzterem Fall müssen die relativen PHP-Pfade zur tatsächlichen Verzeichnisstruktur passen.
+
+`content/`, `public/assets/img/`, `src/send_mail.php` und `config.php` sind nicht versioniert. Diese Dateien müssen beim Bereitstellen separat mitkopiert werden.
+
 ## 1. Texte und Inhalte ändern
 Die meisten Texte der Webseite können selbstständig angepasst werden. Alle editierbaren Daten liegen im Ordner 
 `content/`. Markdown-Formatierung kann nur unterhalb der 2. der 3 Striche (`---`) verwendet werden!
@@ -30,7 +38,7 @@ und lasst die Begriffe (z. B. `iban:`) unverändert!
 ---
 
 ## 2. Fotogalerie
-Alle Bilder für die Galerie werden in den Ordner `assets/img/gallery/` hochgeladen. Die Webseite zeigt automatisch immer
+Alle Bilder für die Galerie werden in den Ordner `public/assets/img/gallery/` hochgeladen. Die Webseite zeigt automatisch immer
 die neuesten 12 Fotos an. Beim Klick auf "Weitere Bilder laden" folgen die nächsten 12.
 
 **Bitte beachtet folgende Regeln für Galeriebilder:**
@@ -71,16 +79,17 @@ Kiba-Maskottchen kam riesig an.
 
 Hier ist ein kleiner Eindruck von unserem Gruppenfoto:
 
-![Die ganze Truppe in Basel](basel-foto.webp)
+![Die ganze Truppe in Basel](/assets/img/news/basel-foto.webp)
 
 Danke an alle, die an unserem Stand vorbeigeschaut haben. Wir sehen uns nächstes Jahr!
 ```
 
 ### Schritt 3: Bilder in News einfügen
 
-Wenn ihr ein Bild im News-Beitrag anzeigen wollt, ladet das Foto **in denselben Ordner** (`content/news/`) hoch, in dem 
-auch eure Textdatei liegt. Im Text bettet ihr das Bild dann mit dieser Schreibweise ein:
+Wenn ihr ein Bild im News-Beitrag anzeigen wollt, ladet das Foto in den Ordner `public/assets/img/news/` hoch. Im Text bettet ihr das Bild dann mit dieser Schreibweise ein:
 
-`![Hier eine kurze Bildbeschreibung](name-des-fotos.webp)`
+`![Hier eine kurze Bildbeschreibung](/assets/img/news/name-des-fotos.webp)`
 
 ## FTP
+
+Beim Hochladen auf Hostpoint ist `public/` das Webverzeichnis. Die internen Ordner und die Konfiguration dürfen nicht im Document Root liegen.

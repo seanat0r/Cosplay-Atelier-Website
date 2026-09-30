@@ -1,5 +1,5 @@
 <?php
-    require_once __DIR__ . "/../lib/Parsedown.php";
+require __DIR__ . "/../vendor/autoload.php";
     function markdownParser($file): array
     {
         $raw = file_get_contents($file);

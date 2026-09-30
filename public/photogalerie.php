@@ -1,16 +1,17 @@
 <html lang="de">
 <?php
+require_once __DIR__ . '/../config.php';
 $pageTitle = "Cosplay-Atelier | Fotogalerie";
-include "includes/head.php";
-include "includes/header.php";
+include BASE_PATH . '/includes/head.php';
+include BASE_PATH . '/includes/header.php';
 ?>
 
 <main>
     <?php
-    include 'includes/hero.php';
+    include BASE_PATH . '/includes/hero.php';
 
     // 1. Hole alle Bilder
-    $allGalleryImg = glob('assets/img/gallery/*.{jpg,jpeg,png,svg,webp}', GLOB_BRACE);
+    $allGalleryImg = glob(__DIR__ . '/assets/img/gallery/*.{jpg,jpeg,png,svg,webp}', GLOB_BRACE);
     rsort($allGalleryImg);
     ?>
 
@@ -26,7 +27,7 @@ include "includes/header.php";
                 $visibleClass = ($i <= 12) ? 'is-visible' : '';
                 ?>
                 <figure class="gallery-item <?= $hiddenClass ?> <?= $visibleClass ?>" style="--animation-order: <?= $i; ?>">
-                    <img src="<?= $imgItem ?>" alt="Galerie Bild <?= $i ?>" loading="lazy">
+                    <img src="/assets/img/gallery/<?= rawurlencode(basename($imgItem)) ?>" alt="Galerie Bild <?= $i ?>" loading="lazy">
                 </figure>
             <?php endforeach ?>
         </div>
@@ -38,6 +39,6 @@ include "includes/header.php";
 </main>
 
 <?php
-include "includes/footer.php";
+include BASE_PATH . '/includes/footer.php';
 ?>
 </html>

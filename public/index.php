@@ -1,19 +1,20 @@
 <html lang="de">
 <?php
+    require_once __DIR__ . '/../config.php';
     $pageTitle = "Cosplay-Atelier | Home";
-    include "includes/head.php";
-    include "includes/header.php";
+    include BASE_PATH . '/includes/head.php';
+    include BASE_PATH . '/includes/header.php';
    ?>
 
 <main>
     <?php
-        include 'includes/hero.php';
+        include BASE_PATH . '/includes/hero.php';
     ?>
 
     <section class="content">
         <?php
-        require_once './src/markdownPraser.php';
-        $dataPath = __DIR__ . "/content/index/index.md";
+        require_once BASE_PATH . '/src/markdownPraser.php';
+        $dataPath = BASE_PATH . "/content/index/index.md";
         $pageData = markdownParser($dataPath);
         ?>
         <article class="content-block">
@@ -41,6 +42,6 @@
 </main>
 
 <?php
-    include "includes/footer.php";
+    include BASE_PATH . '/includes/footer.php';
 ?>
 </html>
