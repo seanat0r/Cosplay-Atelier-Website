@@ -1,47 +1,35 @@
-<html lang="de">
 <?php
-    require_once __DIR__ . '/../config.php';
-    $pageTitle = "Cosplay-Atelier | Home";
-    include BASE_PATH . '/includes/head.php';
-    include BASE_PATH . '/includes/header.php';
-   ?>
+declare(strict_types=1);
 
-<main>
-    <?php
-        include BASE_PATH . '/includes/hero.php';
-    ?>
+use Slim\Factory\AppFactory;
+use Slim\Routing\RouteCollectorProxy;
 
-    <section class="content">
-        <?php
-        require_once BASE_PATH . '/src/markdownPraser.php';
-        $dataPath = BASE_PATH . "/content/index/index.md";
-        $pageData = markdownParser($dataPath);
-        ?>
-        <article class="content-block">
-            <figure>
-                <img src="assets/img/Kiba.png" alt="">
-            </figure>
-            <div class="text-content">
-                <p><?=htmlspecialchars($pageData['title'] ?? 'Verein') ?>   </p>
-                <br>
-                <?= $pageData['htmlContent'] ?>
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../config.php';
+require BASE_PATH . '/src/PageLoader.php';
+require BASE_PATH . '/src/MarkdownParser.php';
 
-                <div class="external-link">
-                    <p><?=htmlspecialchars($pageData['linkText'] ?? 'Verein') ?></p>
-                    <ul>
-                        <li><a class="facebook" href="https://www.facebook.com/CosplayAtelier.ch/" target="_blank">Facebook</a></li>
-                        <li><a class="instagram" href="https://www.instagram.com/cosplayatelier.ch/" target="_blank">Instagram</a></li>
-                        <li><a class="discord" href="https://cosplay-atelier.ch/discord" target="_blank">Discord</a></li>
-                        <li><a class="youtube" href="https://www.youtube.com/channel/UCG9ZdVCMMVPZEbnB3jK1YDg/" target="_blank">YouTube</a></li>
-                    </ul>
-                </div>
-            </div>
-        </article>
-    </section>
+$app = AppFactory::create();
 
-</main>
+$parser = new MarkdownParser();
+$pageLoader = new PageLoader($parser);
+$mail = new Mail();
 
-<?php
-    include BASE_PATH . '/includes/footer.php';
-?>
-</html>
+// homepage and redirect to homepage ("/")
+$app->get("/", [$pageLoader, "homepage"]);
+$app->redirect("/home", "/");
+
+$app->post("/send_mail", [$mail, "sendMail"]);
+
+// all subpage
+$app->group("/", function (RouteCollectorProxy $group) use ($pageLoader) {
+
+    $group->get("about", [$pageLoader, 'about']);
+    $group->get("bylaws", [$pageLoader, 'bylaws']);
+    $group->get("contacts", [$pageLoader, 'contacts']);
+    $group->get("dsgvo", [$pageLoader, 'dsgvo']);
+    $group->get("news", [$pageLoader, 'news']);
+    $group->get("photogalerie", [$pageLoader, 'photogalerie']);
+});
+
+$app->run();

@@ -1,28 +1,29 @@
-<html lang="de">
 <?php
-require_once __DIR__ . '/../config.php';
+declare(strict_types=1);
 $pageTitle = "Cosplay-Atelier | Ueber uns";
-include BASE_PATH . "/includes/head.php";
-include BASE_PATH . "/includes/header.php";
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<?php include BASE_PATH . '/includes/head.php'; ?>
+<body>
+<?php include BASE_PATH . '/includes/header.php'; ?>
 
     <main>
         <?php
         include BASE_PATH . "/includes/hero.php";
 
-        require_once BASE_PATH . '/src/markdownPraser.php';
         $dataPathCommittee = BASE_PATH . "/content/about_us/vorstand.md";
         $dataPathKiba = BASE_PATH . "/content/about_us/kiba.md";
 
-        $pageDataCommittee = markdownParser($dataPathCommittee);
-        $pageDataKiba = markdownParser($dataPathKiba);
+        $pageDataCommittee = $this->parser->parseFile($dataPathCommittee);
+        $pageDataKiba = $this->parser->parseFile($dataPathKiba);
 
         ?>
 
         <section class="about-section">
             <article class="about-article committee">
                 <figure>
-                    <img src="assets/img/committee.jpeg" alt="Vorstand">
+                    <img src="../assets/img/committee.jpeg" alt="Vorstand">
                     <figcaption>Von links nach rechts:<br><?= htmlspecialchars($pageDataCommittee['bildbeschreibung'] ?? 'Vorstand') ?></figcaption>
                 </figure>
                 <div class="content-text-about-us">
@@ -33,7 +34,7 @@ include BASE_PATH . "/includes/header.php";
 
             <article class="about-article mascot reverse-layout">
                 <figure>
-                    <img src= "assets/img/Kiba_Gaming.png" alt="Unser Maskottchen beim Gamen">
+                    <img src= "../assets/img/Kiba_Gaming.png" alt="Unser Maskottchen beim Gamen">
                     <figcaption>Unser Kiba!</figcaption>
                 </figure>
                 <div class="content-text-about-us">
@@ -54,4 +55,5 @@ include BASE_PATH . "/includes/header.php";
 <?php
 include BASE_PATH . "/includes/footer.php";
 ?>
+</body>
 </html>

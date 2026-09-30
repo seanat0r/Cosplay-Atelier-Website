@@ -1,17 +1,19 @@
-<html lang="de">
 <?php
-require_once __DIR__ . '/../config.php';
+declare(strict_types=1);
 $pageTitle = "Cosplay-Atelier | Kontakt & Mitgliedschaft";
-include BASE_PATH . '/includes/head.php';
-include BASE_PATH . '/includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<?php include BASE_PATH . '/includes/head.php'; ?>
+<body>
+<?php include BASE_PATH . '/includes/header.php'; ?>
 
 <main>
     <?php
     include BASE_PATH . '/includes/hero.php';
-    require_once BASE_PATH . '/src/markdownPraser.php';
+    require_once BASE_PATH . '/src/MarkdownParser.php';
     $dataPath = BASE_PATH . '/content/contacts/contacts.md';
-    $pageData = markdownParser($dataPath);
+    $pageData = $this->parser->parseFile($dataPath);
     ?>
 
     <section class="sub-nav">
@@ -76,47 +78,48 @@ include BASE_PATH . '/includes/header.php';
                     </div>
 
                     <figure class="mascot-container">
-                        <img src="assets/img/Kiba_Mask.png" alt="Cosplay-Atelier Maskottchen" class="mascot-img">
+                        <img src="../assets/img/Kiba_Mask.png" alt="Cosplay-Atelier Maskottchen" class="mascot-img">
                     </figure>
                 </div>
             </article>
 
             <article class="form-container">
-                <form action="/send_mail.php" method="POST" class="mitglied-form">
+                <form action="/send_mail" method="POST" class="mitglied-form">
                     <div class="form-group">
-                        <label for="name">Name und Vorname*:</label>
+                        <label for="name">Name und Vorname<span class="info-symbol">*</span>:</label>
                         <input type="text" id="name" name="name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="adresse">Adresse*:</label>
-                        <input type="text" id="adresse" name="adresse" required>
+                        <label for="adresse">Adresse<span class="info-symbol">*</span>:</label>
+                        <input type="text" autocomplete="street-address" id="adresse" name="adresse" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="plz">PLZ und Ort*:</label>
-                        <input type="text" id="plz" name="plz" required>
+                        <label for="plz">PLZ und Ort<span class="info-symbol">*</span>:</label>
+                        <input type="text" autocomplete="postal-code"  id="plz" name="plz" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="geburtsdatum">Geburtsdatum*:</label>
-                        <input type="date" id="geburtsdatum" name="geburtsdatum" required>
+                        <label for="birthdate">Geburtsdatum<span class="info-symbol">*</span>:</label>
+                        <input type="date" autocomplete="bday" id="birthdate" name="birthdate" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="telefon">Telefonnummer*:</label>
-                        <input type="tel" id="telefon" name="telefon" required>
+                        <label for="telefon">Telefonnummer<span class="info-symbol">*</span>:</label>
+                        <input type="tel" autocomplete="tel" id="telefon" name="telefon" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">E-Mail-Adresse*:</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="email">E-Mail-Adresse<span class="info-symbol">*</span>:</label>
+                        <input type="email" autocomplete="email" id="email" name="email" required>
                     </div>
 
                     <div class="form-group checkbox">
                         <input type="checkbox" id="datenschutz" name="datenschutz" required>
                         <label for="datenschutz">
-                            Ich habe die <a href="/dsgvo.php" target="_blank">Datenschutzerklärung</a> gelesen und bin mit der Verarbeitung meiner Daten einverstanden.
+                            Ich habe die <a href="/dsgvo" class="checkbox-dsgvo" target="_blank">Datenschutzerklärung</a>
+                            gelesen und bin mit der Verarbeitung meiner Daten einverstanden.<span class="info-symbol">*</span>
                         </label>
                     </div>
 
@@ -134,4 +137,5 @@ include BASE_PATH . '/includes/header.php';
 <?php
 include BASE_PATH . '/includes/footer.php';
 ?>
+</body>
 </html>

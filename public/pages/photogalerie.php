@@ -1,17 +1,19 @@
-<html lang="de">
 <?php
-require_once __DIR__ . '/../config.php';
+declare(strict_types=1);
 $pageTitle = "Cosplay-Atelier | Fotogalerie";
-include BASE_PATH . '/includes/head.php';
-include BASE_PATH . '/includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<?php include BASE_PATH . '/includes/head.php'; ?>
+<body>
+<?php include BASE_PATH . '/includes/header.php'; ?>
 
 <main>
     <?php
     include BASE_PATH . '/includes/hero.php';
 
     // 1. Hole alle Bilder
-    $allGalleryImg = glob(__DIR__ . '/assets/img/gallery/*.{jpg,jpeg,png,svg,webp}', GLOB_BRACE);
+    $allGalleryImg = glob(BASE_PATH . '/public/assets/img/gallery/*.{jpg,jpeg,png,svg,webp}', GLOB_BRACE);
     rsort($allGalleryImg);
     ?>
 
@@ -41,4 +43,5 @@ include BASE_PATH . '/includes/header.php';
 <?php
 include BASE_PATH . '/includes/footer.php';
 ?>
+</body>
 </html>

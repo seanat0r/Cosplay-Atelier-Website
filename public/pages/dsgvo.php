@@ -1,10 +1,12 @@
-<html lang="de">
 <?php
-require_once __DIR__ . '/../config.php';
+declare(strict_types=1);
 $pageTitle = "Cosplay-Atelier | Datenschutz";
-include BASE_PATH . '/includes/head.php';
-include BASE_PATH . '/includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<?php include BASE_PATH . '/includes/head.php'; ?>
+<body>
+<?php include BASE_PATH . '/includes/header.php'; ?>
 <div style="height: 100px;"></div>
 <main class="content-container">
     <h2>Datenschutzerklärung</h2>
@@ -45,4 +47,5 @@ include BASE_PATH . '/includes/header.php';
 <?php
 include BASE_PATH . '/includes/footer.php';
 ?>
+</body>
 </html>

@@ -1,10 +1,12 @@
-<html lang="de">
 <?php
-require_once __DIR__ . '/../config.php';
+declare(strict_types=1);
 $pageTitle = "Cosplay-Atelier | News";
-include BASE_PATH . '/includes/head.php';
-include BASE_PATH . '/includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<?php include BASE_PATH . '/includes/head.php'; ?>
+<body>
+<?php include BASE_PATH . '/includes/header.php'; ?>
 
 <main>
     <?php
@@ -15,13 +17,13 @@ include BASE_PATH . '/includes/header.php';
     </section>
     <section class="local-news">
         <?php
-            require_once BASE_PATH . '/src/markdownPraser.php';
+            require_once BASE_PATH . '/src/MarkdownParser.php';
             $files = glob(BASE_PATH . '/content/news/*.md');
             if (!empty($files)) {
                 rsort($files);
 
                 foreach ($files as $file) {
-                    $articleData = markdownParser($file);
+                    $articleData = $this->parser->parseFile($file);
                     $finalHtml = $articleData['htmlContent'];
                     ?>
                     <article class="news-card">
@@ -47,4 +49,5 @@ include BASE_PATH . '/includes/header.php';
 <?php
 include BASE_PATH . '/includes/footer.php';
 ?>
+</body>
 </html>

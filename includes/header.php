@@ -1,4 +1,4 @@
-<?php $currentPage = basename($_SERVER['PHP_SELF']);
+<?php $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 ?>
 <header class="main-header">
     <div class="logo-container">
@@ -16,11 +16,11 @@
     <nav class="main-nav">
         <button class="close-menu-btn" aria-label="Menü schliessen">X</button>
         <ul>
-            <li><a href="<?= BASE_URL ?>index.php" <?php echo $currentPage === 'index.php' ? 'class="active"' : ''; ?>>Home</a></li>
-            <li><a href="<?= BASE_URL ?>about_us.php" <?php echo $currentPage === 'about_us.php' ? 'class="active"' : ''; ?>>Über uns</a></li>
-            <li><a href="<?= BASE_URL ?>news.php" <?php echo $currentPage === 'news.php' ? 'class="active"' : ''; ?>>News</a></li>
-            <li><a href="<?= BASE_URL ?>photogalerie.php" <?php echo $currentPage === 'photogalerie.php' ? 'class="active"' : ''; ?>>Fotogalerie</a></li>
-            <li><a href="<?= BASE_URL ?>contacts.php" <?php echo $currentPage === 'contacts.php' ? 'class="active"' : ''; ?>>Kontakt</a></li>
+            <li><a href="/" <?php echo $currentPath === '/' ? 'class="active"' : ''; ?>>Home</a></li>
+            <li><a href="/about" <?php echo $currentPath === '/about' ? 'class="active"' : ''; ?>>Über uns</a></li>
+            <li><a href="/news" <?php echo $currentPath === '/news' ? 'class="active"' : ''; ?>>News</a></li>
+            <li><a href="/photogalerie" <?php echo $currentPath === '/photogalerie' ? 'class="active"' : ''; ?>>Fotogalerie</a></li>
+            <li><a href="/contacts" <?php echo $currentPath === '/contacts' ? 'class="active"' : ''; ?>>Kontakt</a></li>
         </ul>
     </nav>
 </header>

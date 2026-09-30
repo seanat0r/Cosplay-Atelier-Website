@@ -1,16 +1,18 @@
-<html lang="de">
 <?php
-require_once __DIR__ . '/../config.php';
+declare(strict_types=1);
 $pageTitle = "Statuten";
-include BASE_PATH . '/includes/head.php';
-include BASE_PATH . '/includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="de">
+<?php include BASE_PATH . '/includes/head.php'; ?>
+<body>
+<?php include BASE_PATH . '/includes/header.php'; ?>
 <main>
 <?php
 include BASE_PATH . '/includes/hero.php';
-require_once BASE_PATH . '/src/markdownPraser.php';
+require_once BASE_PATH . '/src/MarkdownParser.php';
 $dataPath = BASE_PATH . '/content/bylaws/bylaws.md';
-$pageData = markdownParser($dataPath);
+$pageData = $this->parser->parseFile($dataPath);
 ?>
     <h1><?= htmlspecialchars($pageData["title"])?></h1>
     <section class="download-Section">
@@ -24,4 +26,5 @@ $pageData = markdownParser($dataPath);
     </section>
 </main>
 <?php include BASE_PATH . '/includes/footer.php'; ?>
+</body>
 </html>

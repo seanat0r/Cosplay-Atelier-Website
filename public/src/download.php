@@ -6,24 +6,22 @@ include_once __DIR__ . "/../../config.php";
 $allowed_name = ["statuten.pdf"];
 
 try {
-    $file = isset($_GET['file'])
+    $file = isset($_GET['file']) && is_string($_GET['file'])
         ? basename($_GET['file'])
         : null;
     $filepath = BASE_PATH . "/downloads/" . $file;
 
-    if (!in_array($file, $allowed_name)) {
-        http_response_code(405);
-        header("HTTP/1.1 405 Not Found");
-        header('Content-Type: html/plain');
-        echo require_once "error.php";
+    if (!in_array($file, $allowed_name, true)) {
+        http_response_code(404);
+        header('Content-Type: text/html; charset=utf-8');
+        require BASE_PATH . '/public/pages/error.php';
         exit;
     }
 
-    if (!file_exists($filepath)) {
+    if (!is_file($filepath)) {
         http_response_code(404);
-        header("HTTP/1.1 404 Not Found");
-        header('Content-Type: html/plain');
-        echo require_once "error.php";
+        header('Content-Type: text/html; charset=utf-8');
+        require BASE_PATH . '/public/pages/error.php';
         exit;
     }
     header('Content-Description: File Transfer');
@@ -39,7 +37,6 @@ try {
     exit;
 } catch (\Exception $e) {
     http_response_code(500);
-    header("HTTP/1.1 500 Internal Server Error");
-    header('Content-Type: html/plain');
-    echo require_once "error.php";
+    header('Content-Type: text/html; charset=utf-8');
+    require BASE_PATH . '/public/pages/error.php';
 }

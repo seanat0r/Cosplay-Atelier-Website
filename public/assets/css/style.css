@@ -426,6 +426,11 @@ section {
     font-size: 0.9rem;
 }
 
+.checkbox-dsgvo {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
 .submit-btn {
     width: 100%;
     display: block;
@@ -456,9 +461,12 @@ section {
     font-weight: normal;
     font-size: 0.8rem;
 }
-.info-symbol {
+.info > .info-symbol {
     font-size: 0.9rem;
+}
+.info-symbol {
     font-weight: bold;
+    color: var(--main-color);
 }
 /* --- Mobile (Responsive) --- */
 @media (max-width: 900px) {
