@@ -21,8 +21,7 @@
 
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#fafafa">

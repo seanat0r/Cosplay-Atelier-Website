@@ -1,3 +1,17 @@
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^.*$ public/index.php [L,QSA]
+RewriteEngine On
+
+# Do not expose project-internal files if the domain accidentally points here.
+# Keep public/.well-known available for files such as security.txt.
+RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,NC]
+RewriteRule ^(?:content|downloads|includes|src|templates|vendor|config|docs|l10n)(?:/|$) - [F,NC]
+RewriteRule ^(?:config\.php|composer\.(?:json|lock)|Dockerfile|README[^/]*)$ - [F,NC]
+
+# Fallback when the project root is the Document Root instead of public/.
+# Serve only files from public/ at their normal URLs (including assets).
+RewriteCond %{DOCUMENT_ROOT}/public/index.php -f
+RewriteCond %{DOCUMENT_ROOT}/public/$1 -f
+RewriteRule ^(.+)$ public/$1 [END]
+
+# Keep the original URL for Slim routes such as /bylaws and /download.
+RewriteCond %{DOCUMENT_ROOT}/public/index.php -f
+RewriteRule ^ public/index.php [END]

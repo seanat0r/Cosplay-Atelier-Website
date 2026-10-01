@@ -20,7 +20,7 @@ $pageData = $this->parser->parseFile($dataPath);
         <p class="download-lead"><?= htmlspecialchars($pageData["description"]) ?></p>
 
         <div class="download-action">
-            <a class="download-btn" href="/src/download.php?file=statuten.pdf" download>
+            <a class="download-btn" href="/download?file=statuten.pdf">
                 <span class="btn-icon" aria-hidden="true">&#x2B07; </span>
                 <span>Statuten als PDF herunterladen</span>
             </a>

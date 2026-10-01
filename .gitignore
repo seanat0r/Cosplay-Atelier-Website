@@ -1,6 +1,5 @@
 content
 /public/assets/img/
-src/send_mail.php
 config.php
 /config/*.php
 /vendor
@@ -11,8 +10,11 @@ Dockerfile
 .vscode
 .DS_Store
 
-README_config.md
-README_ftp.md
+docs/README_config.md
+docs/README_ftp.md
 
-.env
+/.env*
+!/.env.example
+
+*.log
 .test_smpt.txt

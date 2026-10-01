@@ -23,7 +23,7 @@ $pageTitle = "Cosplay-Atelier | Ueber uns";
         <section class="about-section">
             <article class="about-article committee">
                 <figure>
-                    <img src="../assets/img/committee.jpeg" alt="Vorstand">
+                    <img src="/assets/img/committee.jpeg" alt="Vorstand">
                     <figcaption>Von links nach rechts:<br><?= htmlspecialchars($pageDataCommittee['bildbeschreibung'] ?? 'Vorstand') ?></figcaption>
                 </figure>
                 <div class="content-text-about-us">
@@ -34,7 +34,7 @@ $pageTitle = "Cosplay-Atelier | Ueber uns";
 
             <article class="about-article mascot reverse-layout">
                 <figure>
-                    <img src= "../assets/img/Kiba_Gaming.png" alt="Unser Maskottchen beim Gamen">
+                    <img src= "/assets/img/Kiba_Gaming.png" alt="Unser Maskottchen beim Gamen">
                     <figcaption>Unser Kiba!</figcaption>
                 </figure>
                 <div class="content-text-about-us">

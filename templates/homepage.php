@@ -21,7 +21,7 @@ $pageTitle = "Cosplay-Atelier | Home";
         ?>
         <article class="content-block">
             <figure>
-                <img src="../assets/img/Kiba.png" alt="">
+                <img src="/assets/img/Kiba.png" alt="">
             </figure>
             <div class="text-content">
                 <h2><?= htmlspecialchars($pageData['title'] ?? 'Verein') ?></h2>

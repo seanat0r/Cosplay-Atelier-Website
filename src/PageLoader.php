@@ -13,7 +13,7 @@ class PageLoader
 
     public function homepage(Request $request, Response $response, array $args): Response {
         ob_start();
-        include BASE_PATH . "/public/pages/homepage.php";
+        include BASE_PATH . "/templates/homepage.php";
         $html = ob_get_clean();
 
         $response->getBody()->write($html);
@@ -24,7 +24,7 @@ class PageLoader
 
     public function about(Request $request, Response $response, array $args): Response {
         ob_start();
-        include BASE_PATH . "/public/pages/about_us.php";
+        include BASE_PATH . "/templates/about_us.php";
         $html = ob_get_clean();
 
         $response->getBody()->write($html);
@@ -35,7 +35,7 @@ class PageLoader
 
     public function bylaws(Request $request, Response $response, array $args): Response {
         ob_start();
-        include BASE_PATH . "/public/pages/bylaws.php";
+        include BASE_PATH . "/templates/bylaws.php";
         $html = ob_get_clean();
 
         $response->getBody()->write($html);
@@ -46,7 +46,7 @@ class PageLoader
 
     public function contacts(Request $request, Response $response, array $args): Response {
         ob_start();
-        include BASE_PATH . "/public/pages/contacts.php";
+        include BASE_PATH . "/templates/contacts.php";
         $html = ob_get_clean();
 
         $response->getBody()->write($html);
@@ -57,7 +57,7 @@ class PageLoader
 
     public function dsgvo(Request $request, Response $response, array $args): Response {
         ob_start();
-        include BASE_PATH . "/public/pages/dsgvo.php";
+        include BASE_PATH . "/templates/dsgvo.php";
         $html = ob_get_clean();
 
         $response->getBody()->write($html);
@@ -91,7 +91,7 @@ class PageLoader
 
     public function news(Request $request, Response $response, array $args): Response {
         ob_start();
-        include BASE_PATH . "/public/pages/news.php";
+        include BASE_PATH . "/templates/news.php";
         $html = ob_get_clean();
 
         $response->getBody()->write($html);
@@ -102,7 +102,7 @@ class PageLoader
 
     public function photogalerie(Request $request, Response $response, array $args): Response {
         ob_start();
-        include BASE_PATH . "/public/pages/photogalerie.php";
+        include BASE_PATH . "/templates/photogalerie.php";
         $html = ob_get_clean();
 
         $response->getBody()->write($html);
@@ -112,7 +112,7 @@ class PageLoader
     }
     public function kibacon(Request $request, Response $response, array $args): Response {
         ob_start();
-        include BASE_PATH . "/public/pages/kibacon.php";
+        include BASE_PATH . "/templates/kibacon.php";
         $html = ob_get_clean();
 
         $response->getBody()->write($html);
@@ -122,12 +122,25 @@ class PageLoader
     }
 
     public function notFound(Request $request, Response $response, array $args): Response {
+        $errorMessage = $args['message'] ?? 'Unknown Reason';
         ob_start();
-        include BASE_PATH . "/public/404.php";
+        include BASE_PATH . "/templates/404.php";
         $html = ob_get_clean();
         $response->getBody()->write($html);
         return $response
             ->withHeader('Content-Type', 'text/html')
-            ->withStatus(200);
+            ->withStatus(404);
+    }
+
+    public function serverError(Request $request, Response $response, array $args): Response
+    {
+        $errorMessage = $args['message'] ?? 'Unknown Reason';
+        ob_start();
+        include BASE_PATH . "/templates/500.php";
+        $html = ob_get_clean();
+        $response->getBody()->write($html);
+        return $response
+            ->withHeader('Content-Type', 'text/html')
+            ->withStatus(500);
     }
 }

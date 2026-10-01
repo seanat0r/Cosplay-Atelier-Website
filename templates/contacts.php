@@ -88,7 +88,7 @@ unset($_SESSION["form_error"], $_SESSION["form_error_status"], $_SESSION["form_o
                     </div>
 
                     <figure class="mascot-container">
-                        <img src="../assets/img/Kiba_Mask.png" alt="Cosplay-Atelier Maskottchen" class="mascot-img">
+                        <img src="/assets/img/Kiba_Mask.png" alt="Cosplay-Atelier Maskottchen" class="mascot-img">
                     </figure>
                 </div>
             </article>
