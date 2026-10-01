@@ -1,0 +1,19 @@
+{
+  "name": "Cosplay-Atelier",
+  "short_name": "Cosplay",
+  "description": "Offizielle Website des Cosplay-Ateliers",
+  "lang": "de-CH",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#a82e26",
+  "icons": [
+    {
+      "src": "/assets/img/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}

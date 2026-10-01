@@ -1,16 +1,18 @@
-<section class="hero">
+<?php $isHomeHero = !empty($heroIsHome); ?>
+<section class="hero<?= $isHomeHero ? '' : ' hero--compact' ?>">
     <div class="hero-content">
         <figure>
             <img src="/assets/img/hero.jpeg" alt="Platzhalter Bild 1">
         </figure>
         <div class="hero-text">
             <?php
-            require_once __DIR__ . '/../src/MarkdownParser.php';
             $dataPath = __DIR__ . "/../content/hero/hero.md";
-            $pageData = $this->parser->parseFile($dataPath);
+            $heroData = $this->parser->parseFile($dataPath);
             ?>
-            <h1><?= htmlspecialchars($pageData['title'] ?? 'Cosplay-Atelier') ?></h1>
-            <?= $pageData['htmlContent'] ?>
+            <h1><?= htmlspecialchars($heroData['title'] ?? 'Cosplay-Atelier') ?></h1>
+            <?php if ($isHomeHero): ?>
+                <div class="hero-main-content"><?= $heroData['htmlContent'] ?></div>
+            <?php endif; ?>
         </div>
     </div>
 </section>

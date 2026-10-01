@@ -63,7 +63,7 @@ Programm **Obsidian**, da es sehr einsteigerfreundlich ist.
 ### Schritt 1: Datei erstellen
 Erstellt eine neue Datei im Ordner `content/news/`. Der Dateiname bestimmt die Sortierung auf der Webseite. 
 Nutzt auch hier das Datums-Format, am Ende steht jedoch immer die Endung `.md` für Markdown:
-`JAHR-MONAT-TAG-titel-des-beitrags.md` (z. B. `2026-06-01-fantasy-basel.md`).
+`JAHR-MONAT-TAG-titel-des-beitrags.md` (z. B. `2026-10-01.md`).
 
 ### Schritt 2: Aufbau der Datei
 Jede News-Datei muss zwingend mit den Metadaten (Titel und Datum) starten, gefolgt von drei Bindestrichen. 

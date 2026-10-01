@@ -21,7 +21,6 @@ unset($_SESSION["form_error"], $_SESSION["form_error_status"], $_SESSION["form_o
 <main>
     <?php
     include BASE_PATH . '/includes/hero.php';
-    require_once BASE_PATH . '/src/MarkdownParser.php';
     $dataPath = BASE_PATH . '/content/contacts/contacts.md';
     $pageData = $this->parser->parseFile($dataPath);
     ?>
@@ -44,7 +43,7 @@ unset($_SESSION["form_error"], $_SESSION["form_error_status"], $_SESSION["form_o
                 <p>Hast du allgemeine Fragen an den Verein? Melde dich jederzeit bei uns.</p>
                 <p><strong>E-Mail:</strong><br>
                     <a href="mailto:<?= htmlspecialchars($pageData['emailAllgemein'] ?? '') ?>">
-                        <?= htmlspecialchars($pageData['emailAllgemein'] ?? 'Keine E-Mail hinterlegt') ?>
+                        <span class="mail-icon" aria-hidden="true">✉</span> <?= htmlspecialchars($pageData['emailAllgemein'] ?? 'Keine E-Mail hinterlegt') ?>
                     </a></p>
             </div>
 
@@ -65,6 +64,7 @@ unset($_SESSION["form_error"], $_SESSION["form_error_status"], $_SESSION["form_o
                 <p>Bei technischen Fragen zur Webseite erreichst du unseren Webmaster.</p>
                 <p><strong>E-Mail:</strong><br>
                     <a href="mailto:<?= htmlspecialchars($pageData['emailAdmin'] ?? '') ?>">
+                        <span class="mail-icon" aria-hidden="true">✉</span>
                         <?= htmlspecialchars($pageData['emailAdmin'] ?? '') ?>
                     </a></p>
                 <p><strong>Tel:</strong> <?= htmlspecialchars($pageData['telefonAdmin'] ?? '') ?></p>
@@ -82,7 +82,7 @@ unset($_SESSION["form_error"], $_SESSION["form_error_status"], $_SESSION["form_o
                     <div class="cta-text">
                         <p><strong>Interessiert?</strong></p>
                         <p>Dann melde dich mit dem unten stehenden Formular, über unsere E-Mail
-                            (<a href="mailto:kontakt@cosplay-atelier.ch">kontakt@cosplay-atelier.ch</a>) oder wende dich direkt an eines
+                            <a href="mailto:kontakt@cosplay-atelier.ch"><span class="mail-icon" aria-hidden="true">✉</span>kontakt@cosplay-atelier.ch</a> oder wende dich direkt an eines
                             unserer Mitglieder.</p>
                         <p class="greeting-text">Wir freuen uns auf dich!</p>
                     </div>

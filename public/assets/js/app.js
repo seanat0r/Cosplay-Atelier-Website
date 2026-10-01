@@ -85,8 +85,8 @@ async function checkPlz() {
     }
 }
 if (plzInput !== null) {
-    plzInput?.addEventListener("input", checkPlz);
-    plzInput?.addEventListener("change", checkPlz);
+    plzInput.addEventListener("input", checkPlz);
+    plzInput.addEventListener("change", checkPlz);
     window.addEventListener("pageshow", checkPlz);
 }
 //Photogalerie.php Load more Img
@@ -106,5 +106,38 @@ if (loadMoreBtn) {
         if (document.querySelectorAll('.gallery-item.hidden').length === 0) {
             this.style.display = 'none';
         }
+    });
+}
+
+// kibacon carousel
+const prevButton = document.querySelector("#kibacon-news-prev") ?? null;
+const nextButton = document.querySelector("#kibacon-news-next") ?? null;
+const track = document.getElementById("kibacon-news-track") ?? null;
+
+if (prevButton !== null && nextButton !== null && track !== null) {
+    prevButton.addEventListener("click", () => move(-1));
+    nextButton.addEventListener("click", () => move(1));
+    track.addEventListener("scroll", updateButtons);
+    window.addEventListener("resize", updateButtons);
+
+    updateButtons();
+}
+
+function updateButtons() {
+    const end = track.scrollWidth - track.clientWidth;
+    prevButton.disabled = track.scrollLeft <= 2;
+    nextButton.disabled = track.scrollLeft >= end - 2;
+}
+
+function move(direction) {
+    const card = track.querySelector("a");
+    if (!card) return;
+    const gap = parseFloat(getComputedStyle(track).gap) || 0;
+    const distance = card.getBoundingClientRect().width + gap;
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    track.scrollBy({
+        left: direction * distance,
+        behavior: reduceMotion ? "auto" : "smooth"
     });
 }

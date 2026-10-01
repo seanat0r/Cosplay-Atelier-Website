@@ -1,35 +1,32 @@
 /*
 ========================================================================================================================
-                                    DGVO
+                                    DSGVO
 ========================================================================================================================
 */
 
-.content-container {
-    width: 85%;
-    max-width: 800px;
-    margin: 2rem auto 4rem auto;
-    padding-top: 100px;
-    line-height: 1.6;
-    color: #333;
-}
-
-.content-container h2 {
-    color: var(--main-color);
+.privacy-page > h2 {
+    margin: 1.5rem 1rem 1rem;
+    color: var(--text);
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 1.25;
     text-align: center;
-    margin-bottom: 2rem;
 }
 
-.content-container h3 {
-    margin-top: 2rem;
+.privacy-section {
+    width: min(100% - 2rem, 800px);
+    margin: 0 auto 3rem;
+}
+
+.privacy-document a {
     color: var(--main-color);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
 }
 
-.content-container p, .content-container ul {
-    margin-bottom: 1rem;
-}
-
-.content-container ul {
-    padding-left: 20px;
+.privacy-document a:hover,
+.privacy-document a:focus-visible {
+    text-decoration-thickness: 2px;
 }
 
 /*
@@ -181,6 +178,10 @@ h1 {
 
 @media (min-width: 680px) {
     h1 {
+        font-size: 2.25rem;
+    }
+
+    .privacy-page > h2 {
         font-size: 2.25rem;
     }
 

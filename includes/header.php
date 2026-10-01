@@ -17,7 +17,7 @@
         <ul>
             <li><a href="/" <?php echo $currentPath === '/' ? 'class="active" aria-current="page"' : ''; ?>>Home</a></li>
             <li><a href="/about" <?php echo $currentPath === '/about' ? 'class="active" aria-current="page"' : ''; ?>>Über uns</a></li>
-            <li><a href="/chibicon" <?php echo $currentPath === '/chibicon' ? 'class="active" aria-current="page"' : ''; ?>>Chibicon</a></li>
+            <li><a href="/kibacon" <?php echo $currentPath === '/kibacon' ? 'class="active" aria-current="page"' : ''; ?>>Kibacon</a></li>
             <li><a href="/news" <?php echo $currentPath === '/news' ? 'class="active" aria-current="page"' : ''; ?>>News</a></li>
             <li><a href="/photogalerie" <?php echo $currentPath === '/photogalerie' ? 'class="active" aria-current="page"' : ''; ?>>Fotogalerie</a></li>
             <li><a href="/contacts" <?php echo $currentPath === '/contacts' ? 'class="active" aria-current="page"' : ''; ?>>Kontakt</a></li>

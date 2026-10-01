@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Exception\HttpNotFoundException;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../config.php';
@@ -15,6 +17,16 @@ $app = AppFactory::create();
 $parser = new MarkdownParser();
 $pageLoader = new PageLoader($parser);
 $mail = new Mail();
+
+$app->addRoutingMiddleware();
+$errorMiddleware = $app->addErrorMiddleware(false, true, true);
+$errorMiddleware->setErrorHandler(
+    HttpNotFoundException::class,
+    function (Request $request) use ($app, $pageLoader) {
+        $response = $app->getResponseFactory()->createResponse();
+        return $pageLoader->notFound($request, $response, []);
+    }
+);
 
 // homepage and redirect to homepage ("/")
 $app->get("/", [$pageLoader, "homepage"]);
@@ -29,9 +41,11 @@ $app->group("/", function (RouteCollectorProxy $group) use ($pageLoader) {
     $group->get("bylaws", [$pageLoader, 'bylaws']);
     $group->get("contacts", [$pageLoader, 'contacts']);
     $group->get("dsgvo", [$pageLoader, 'dsgvo']);
+    $group->get("news/{article}", [$pageLoader, 'newsArticle']);
     $group->get("news", [$pageLoader, 'news']);
     $group->get("photogalerie", [$pageLoader, 'photogalerie']);
-    $group->get("chibicon", [$pageLoader, 'chibicon']);
+    $group->get("kibacon", [$pageLoader, 'kibacon']);
+    $group->get("404", [$pageLoader, 'notFound']);
 });
 
 $app->run();

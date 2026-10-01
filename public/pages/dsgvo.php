@@ -7,10 +7,12 @@ $pageTitle = "Cosplay-Atelier | Datenschutz";
 <?php include BASE_PATH . '/includes/head.php'; ?>
 <body>
 <?php include BASE_PATH . '/includes/header.php'; ?>
-<div style="height: 100px;"></div>
-<main class="content-container">
+<main class="privacy-page">
+    <?php include BASE_PATH . '/includes/hero.php'; ?>
     <h2>Datenschutzerklärung</h2>
 
+    <section class="privacy-section">
+        <article class="legal-document privacy-document">
     <h3>Verantwortliche Stelle</h3>
     <p>Für die Bearbeitung der Daten auf dieser Website ist das Cosplay-Atelier verantwortlich.</p>
 
@@ -41,7 +43,9 @@ $pageTitle = "Cosplay-Atelier | Datenschutz";
 
     <h3>Deine Rechte</h3>
     <p>Du kannst Auskunft über die Bearbeitung deiner Personendaten verlangen und dich wegen unrichtiger oder
-        nicht mehr benötigter Daten an uns wenden. Schreibe dafür an <a href="mailto:kontakt@cosplay-atelier.ch">kontakt@cosplay-atelier.ch</a></p>
+        nicht mehr benötigter Daten an uns wenden. Schreibe dafür an <a href="mailto:kontakt@cosplay-atelier.ch"><span class="mail-icon" aria-hidden="true">✉</span> kontakt@cosplay-atelier.ch</a></p>
+        </article>
+    </section>
 </main>
 
 <?php

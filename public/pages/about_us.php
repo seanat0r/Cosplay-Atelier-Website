@@ -45,7 +45,7 @@ $pageTitle = "Cosplay-Atelier | Ueber uns";
 
             <article class="about-article sponsor-section">
                 <?php
-                include BASE_PATH . "/includes/data/sponsor.php";
+                include BASE_PATH . "/includes/sponsor.php";
                 ?>
             </article>
         </section>

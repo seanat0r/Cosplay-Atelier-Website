@@ -36,11 +36,40 @@ section {
     flex: 1;
 }
 
+.text-content h2 {
+    margin-bottom: 1.25rem;
+    color: var(--main-color);
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
 .text-content p {
     font-size: 1.05rem;
     line-height: 1.75;
     color: var(--text);
     margin: 0;
+}
+
+.text-content > p + p {
+    margin-top: 1rem;
+}
+
+.home-hero-content {
+    margin-top: 2rem;
+}
+
+.home-hero-content h3 {
+    margin-bottom: 0.75rem;
+    color: var(--main-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.home-hero-content p + p {
+    margin-top: 0.75rem;
 }
 
 /* ========================================================================================================================
@@ -53,8 +82,9 @@ section {
 
 .external-link > p {
     font-weight: 600;
-    font-size: 0.95rem;
-    color: var(--accent-contrast);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text);
     margin-bottom: 1rem;
 }
 
@@ -68,7 +98,9 @@ section {
 }
 
 .external-link a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     padding: 10px 20px;
     background-color: var(--highlight);
     color: var(--text);
@@ -144,10 +176,13 @@ section {
 
 .about-article figure figcaption {
     margin-top: 0.8rem;
-    font-size: 0.85rem;
-    color: var(--accent-contrast);
+    padding: 5px;
+    font-size: 1rem;
+    color: var(--highlight);
     font-style: italic;
     text-align: center;
+    background-color: var(--main-color);
+    border-radius: 8px;
 }
 
 .about-article figure {
@@ -461,5 +496,317 @@ section {
 
     .news-date {
         align-self: flex-start;
+    }
+}
+
+/* ========================================================================================================================
+               404 - Not Found
+======================================================================================================================== */
+
+.not-found-card {
+    width: min(100% - 2rem, 680px);
+    margin: 2.5rem auto 3rem;
+    padding: clamp(1.5rem, 5vw, 3rem);
+    border: 1px solid var(--highlight);
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(33, 37, 41, 0.06);
+    text-align: center;
+}
+
+.not-found-image {
+    width: auto;
+    height: clamp(180px, 28vh, 280px);
+    max-width: 100%;
+    margin: 0 auto 1rem;
+    object-fit: contain;
+}
+
+.not-found-card h2 {
+    margin-bottom: 0.75rem;
+    color: var(--main-color);
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.not-found-card p {
+    max-width: 42ch;
+    margin: 0 auto 1.75rem;
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.65;
+}
+
+.not-found-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background-color: var(--main-color);
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.not-found-link:hover,
+.not-found-link:focus-visible {
+    background-color: rgb(140, 36, 30);
+}
+
+/* ========================================================================================================================
+               KIBACON
+======================================================================================================================== */
+
+.kibacon-layout,
+.kibacon-sponsors {
+    width: min(100% - 2rem, 1200px);
+    margin-inline: auto;
+}
+
+.kibacon-layout {
+    display: grid;
+    gap: 1.5rem;
+    margin-block: 2.5rem;
+}
+
+.kibacon-aside {
+    min-width: 0;
+    padding: 1.5rem;
+    border-radius: 16px;
+}
+
+.kibacon-aside figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 100%;
+    margin: 0;
+}
+
+.kibacon-aside img {
+    width: auto;
+    max-width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+}
+
+.kibacon-aside figcaption {
+    margin-top: 0.8rem;
+    padding: 5px;
+    font-size: 1rem;
+    color: var(--highlight);
+    font-style: italic;
+    text-align: center;
+    background-color: var(--main-color);
+    border-radius: 8px;
+}
+
+.kibacon-content {
+    display: grid;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.kibacon-news {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 1.25rem;
+    border: 1px solid var(--highlight);
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.kibacon-news-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.kibacon-news-heading h2 {
+    margin: 0;
+    color: var(--main-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.kibacon-news-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.kibacon-news-controls button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    min-width: 105px;
+    min-height: 56px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: var(--main-color);
+    font: inherit;
+    font-size: 1rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.kibacon-news-controls button span {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.kibacon-news-controls button:hover {
+    background-color: var(--highlight);
+}
+
+.kibacon-news-controls button:focus-visible {
+    outline: 3px solid var(--main-color);
+    outline-offset: 2px;
+}
+
+.kibacon-news-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: 0.25rem 0.25rem 1rem;
+}
+
+.kibacon-news-track:focus-visible {
+    outline: 3px solid var(--main-color);
+    outline-offset: 3px;
+}
+
+.kibacon-news-track > a {
+    display: block;
+    flex: 0 0 min(82%, 300px);
+    min-width: 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+.news-description {
+    height: 100%;
+    padding: 1.25rem;
+    border-radius: 12px;
+    background-color: var(--highlight);
+    box-shadow: 0 10px 25px rgba(33, 37, 41, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kibacon-news-track > a:hover .news-description,
+.kibacon-news-track > a:focus-visible .news-description {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(33, 37, 41, 0.1);
+}
+
+.news-description-header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--background-color);
+}
+
+.news-description-icon {
+    grid-column: 1;
+    grid-row: 1;
+    color: var(--main-color);
+    font-size: 1.25rem;
+}
+
+.news-description-header h2 {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    color: var(--main-color);
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+.news-description .news-date {
+    grid-column: 1 / -1;
+    justify-self: start;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.65rem;
+    background-color: #ffffff;
+}
+
+.news-description-body p {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.kibacon-story h2 {
+    margin: 0 0 1.5rem;
+    color: var(--main-color);
+    font-size: clamp(1.7rem, 3vw, 2rem);
+    line-height: 1.3;
+}
+
+.kibacon-story h4 {
+    margin: 2rem 0 1rem;
+    color: var(--main-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.kibacon-story p,
+.kibacon-story li {
+    color: var(--text);
+    font-size: 1.05rem;
+    line-height: 1.75;
+}
+
+.kibacon-story p + p {
+    margin-top: 1rem;
+}
+
+.kibacon-story ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    list-style: disc;
+}
+
+.kibacon-story li + li {
+    margin-top: 0.5rem;
+}
+
+.kibacon-sponsors {
+    margin-block: 0 3rem;
+}
+
+.kibacon-sponsors .sponsor-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 900px) {
+    .kibacon-layout {
+        grid-template-columns: minmax(210px, 26%) minmax(0, 1fr);
+        gap: 2rem;
+    }
+
+    .kibacon-aside img {
+        max-height: 420px;
     }
 }

@@ -1,0 +1,22 @@
+# Cosplay-Atelier
+
+> Das Cosplay-Atelier ist ein Verein im Aargau für Menschen, die sich für Cosplay, gemeinsames Gestalten und Veranstaltungen interessieren.
+
+Die Website ist auf Deutsch. Für aktuelle Termine, Neuigkeiten und Kontaktangaben gelten die jeweils verlinkten Seiten.
+
+## Verein
+
+- [Startseite](https://cosplay-atelier.ch/): Überblick über den Verein und seine Aktivitäten.
+- [Über uns](https://cosplay-atelier.ch/about): Informationen zum Verein, zum Vorstand und zum Maskottchen Kiba.
+- [Kontakt](https://cosplay-atelier.ch/contacts): Kontaktmöglichkeiten und Vereinsangaben.
+
+## Aktuelles und Veranstaltungen
+
+- [Kibacon](https://cosplay-atelier.ch/kibacon): Informationen zur Veranstaltung des Vereins.
+- [News](https://cosplay-atelier.ch/news): Aktuelle Beiträge des Vereins.
+- [Fotogalerie](https://cosplay-atelier.ch/photogalerie): Bilder von Vereinsaktivitäten.
+
+## Vereinsdokumente
+
+- [Statuten](https://cosplay-atelier.ch/bylaws): Statuten des Vereins.
+- [Datenschutz](https://cosplay-atelier.ch/dsgvo): Angaben zum Umgang mit personenbezogenen Daten.

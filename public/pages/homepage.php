@@ -9,7 +9,9 @@ $pageTitle = "Cosplay-Atelier | Home";
 <?php include BASE_PATH . '/includes/header.php'; ?>
 
 <main>
-    <?php include BASE_PATH . '/includes/hero.php'; ?>
+    <?php $heroIsHome = true; ?>
+    <?php include BASE_PATH . '/includes/hero.php';
+    $heroMainContent = $heroData['htmlContent']; ?>
 
     <section class="content">
         <?php
@@ -22,9 +24,13 @@ $pageTitle = "Cosplay-Atelier | Home";
                 <img src="../assets/img/Kiba.png" alt="">
             </figure>
             <div class="text-content">
-                <p><?=htmlspecialchars($pageData['title'] ?? 'Verein') ?>   </p>
-                <br>
+                <h2><?= htmlspecialchars($pageData['title'] ?? 'Verein') ?></h2>
                 <?= $pageData['htmlContent'] ?>
+
+                <div class="home-hero-content">
+                    <h3>Unser Leitbild</h3>
+                    <?= $heroMainContent ?>
+                </div>
 
                 <div class="external-link">
                     <p><?=htmlspecialchars($pageData['linkText'] ?? 'Verein') ?></p>
