@@ -87,4 +87,14 @@ class PageLoader
             ->withHeader('Content-Type', 'text/html')
             ->withStatus(200);
     }
+    public function chibicon(Request $request, Response $response, array $args): Response {
+        ob_start();
+        include BASE_PATH . "/public/pages/chibicon.php";
+        $html = ob_get_clean();
+
+        $response->getBody()->write($html);
+        return $response
+            ->withHeader('Content-Type', 'text/html')
+            ->withStatus(200);
+    }
 }

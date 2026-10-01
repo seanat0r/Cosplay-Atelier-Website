@@ -14,15 +14,21 @@ require_once BASE_PATH . '/src/MarkdownParser.php';
 $dataPath = BASE_PATH . '/content/bylaws/bylaws.md';
 $pageData = $this->parser->parseFile($dataPath);
 ?>
-    <h1><?= htmlspecialchars($pageData["title"])?></h1>
-    <section class="download-Section">
-        <p><?= htmlspecialchars($pageData["description"])?> <br>
-            <a href="/src/download.php?file=statuten.pdf">Hier könnt Ihr unsere Statuten downloaden!</a>
-        </p>
-        <article>
-            <?= $pageData["htmlContent"]?>
-        </article>
+    <h1><?= htmlspecialchars($pageData["title"]) ?></h1>
 
+    <section class="download-section">
+        <p class="download-lead"><?= htmlspecialchars($pageData["description"]) ?></p>
+
+        <div class="download-action">
+            <a class="download-btn" href="/src/download.php?file=statuten.pdf" download>
+                <span class="btn-icon" aria-hidden="true">&#x2B07; </span>
+                <span>Statuten als PDF herunterladen</span>
+            </a>
+        </div>
+
+        <article class="legal-document">
+            <?= $pageData["htmlContent"] ?>
+        </article>
     </section>
 </main>
 <?php include BASE_PATH . '/includes/footer.php'; ?>

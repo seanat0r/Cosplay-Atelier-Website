@@ -31,6 +31,7 @@ $app->group("/", function (RouteCollectorProxy $group) use ($pageLoader) {
     $group->get("dsgvo", [$pageLoader, 'dsgvo']);
     $group->get("news", [$pageLoader, 'news']);
     $group->get("photogalerie", [$pageLoader, 'photogalerie']);
+    $group->get("chibicon", [$pageLoader, 'chibicon']);
 });
 
 $app->run();

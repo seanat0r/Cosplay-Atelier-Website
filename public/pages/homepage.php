@@ -9,9 +9,7 @@ $pageTitle = "Cosplay-Atelier | Home";
 <?php include BASE_PATH . '/includes/header.php'; ?>
 
 <main>
-    <?php
-        include BASE_PATH . '/includes/hero.php';
-    ?>
+    <?php include BASE_PATH . '/includes/hero.php'; ?>
 
     <section class="content">
         <?php

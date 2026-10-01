@@ -1,0 +1,207 @@
+/*
+========================================================================================================================
+                                    DGVO
+========================================================================================================================
+*/
+
+.content-container {
+    width: 85%;
+    max-width: 800px;
+    margin: 2rem auto 4rem auto;
+    padding-top: 100px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.content-container h2 {
+    color: var(--main-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content-container h3 {
+    margin-top: 2rem;
+    color: var(--main-color);
+}
+
+.content-container p, .content-container ul {
+    margin-bottom: 1rem;
+}
+
+.content-container ul {
+    padding-left: 20px;
+}
+
+/*
+========================================================================================================================
+                                    BYLAWS
+========================================================================================================================
+*/
+
+h1 {
+    font-size: 1.85rem;
+    line-height: 1.25;
+    color: var(--text);
+    margin: 1.5rem 0 1rem;
+    font-weight: 700;
+}
+
+
+.download-section {
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.download-lead {
+    font-size: 1.05rem;
+    color: var(--accent-contrast);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+}
+
+.download-action {
+    margin-bottom: 2rem;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.85rem 1.4rem;
+    margin: 0 5px 0 5px;
+    background-color: var(--main-color);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.download-btn:hover,
+.download-btn:focus-visible {
+    background-color: rgb(140, 36, 30);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    transform: translateY(-1px);
+    outline: 2px solid var(--main-color);
+    outline-offset: 3px;
+}
+
+.download-btn .btn-icon {
+    display: inline-block;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* -------------------------------------------------------------
+   Bylaw markdown rendering
+------------------------------------------------------------- */
+.legal-document {
+    background-color: #ffffff;
+    border: 1px solid var(--highlight);
+    border-radius: 8px;
+    padding: 1.5rem 1.2rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 0.98rem;
+    word-break: break-word;
+}
+
+.legal-document h2 {
+    font-size: 1.4rem;
+    color: var(--main-color);
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--highlight);
+}
+
+.legal-document h3 {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--highlight);
+    font-weight: 700;
+}
+
+.legal-document h3:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 1rem;
+}
+
+.legal-document h4 {
+    font-size: 1.05rem;
+    color: var(--accent-contrast);
+    margin-top: 1.4rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.legal-document p {
+    margin: 0 0 1rem 0;
+}
+
+.legal-document ul,
+.legal-document ol {
+    margin: 0 0 1.25rem 0;
+    padding-left: 1.4rem;
+}
+.legal-document ol {
+    list-style: decimal;
+}
+
+.legal-document li {
+    margin-bottom: 0.45rem;
+}
+
+.legal-document li:last-child {
+    margin-bottom: 0;
+}
+
+.legal-document li > ul,
+.legal-document li > ol {
+    margin-top: 0.45rem;
+    margin-bottom: 0.45rem;
+    padding-left: 1.2rem;
+}
+
+.legal-document em {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--accent-contrast);
+    font-style: italic;
+}
+
+@media (min-width: 680px) {
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    .download-lead {
+        font-size: 1.15rem;
+    }
+
+    .download-btn {
+        width: auto;
+        padding: 0.8rem 1.6rem;
+    }
+
+    .legal-document {
+        padding: 2.5rem 3rem;
+    }
+
+    .legal-document h2 {
+        font-size: 1.65rem;
+    }
+
+    .legal-document h3 {
+        font-size: 1.3rem;
+    }
+}

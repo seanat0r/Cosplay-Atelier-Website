@@ -1,3 +1,44 @@
+// Mobile navigation
+const menuToggle = document.querySelector('.burger-menu-toggle');
+const mainNav = document.querySelector('#main-navigation');
+
+if (menuToggle && mainNav) {
+    document.documentElement.classList.add('menu-ready');
+
+    const closeMenu = (restoreFocus = false) => {
+        mainNav.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Menü öffnen');
+        if (restoreFocus) menuToggle.focus();
+    };
+
+    menuToggle.addEventListener('click', () => {
+        document.documentElement.classList.add('menu-animated');
+        const isOpen = mainNav.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.setAttribute('aria-label', isOpen ? 'Menü schliessen' : 'Menü öffnen');
+        if (isOpen) mainNav.querySelector('a')?.focus();
+    });
+
+    mainNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => closeMenu());
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && mainNav.classList.contains('is-open')) {
+            closeMenu(true);
+        }
+    });
+
+    document.addEventListener('click', event => {
+        if (mainNav.classList.contains('is-open') && !event.target.closest('.main-header')) {
+            closeMenu();
+        }
+    });
+
+    window.matchMedia('(min-width: 1100px)').addEventListener('change', () => closeMenu());
+}
+
 // Photogalerie.php Animation
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -21,7 +62,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-const plzInput = document.querySelector("#plz");
+// plz automatic city input for password manager
+const plzInput = document.querySelector("#plz") ?? null;
 
 async function checkPlz() {
     const plz = plzInput.value.trim();
@@ -42,11 +84,11 @@ async function checkPlz() {
         console.error("Could not automatically filling the plz form input.");
     }
 }
-
-plzInput?.addEventListener("input", checkPlz);
-plzInput?.addEventListener("change", checkPlz);
-window.addEventListener("pageshow", checkPlz);
-
+if (plzInput !== null) {
+    plzInput?.addEventListener("input", checkPlz);
+    plzInput?.addEventListener("change", checkPlz);
+    window.addEventListener("pageshow", checkPlz);
+}
 //Photogalerie.php Load more Img
 const loadMoreBtn = document.getElementById('load-gallery');
 

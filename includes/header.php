@@ -7,20 +7,20 @@
     </div>
 
     <!-- Mobile Burger Menu -->
-    <button class="burger-menu-toggle" aria-label="Menü öffnen">
+    <button class="burger-menu-toggle" type="button" aria-label="Menü öffnen" aria-controls="main-navigation" aria-expanded="false">
         <span class="burger-line"></span>
         <span class="burger-line"></span>
         <span class="burger-line"></span>
     </button>
 
-    <nav class="main-nav">
-        <button class="close-menu-btn" aria-label="Menü schliessen">X</button>
+    <nav class="main-nav" id="main-navigation" aria-label="Hauptnavigation">
         <ul>
-            <li><a href="/" <?php echo $currentPath === '/' ? 'class="active"' : ''; ?>>Home</a></li>
-            <li><a href="/about" <?php echo $currentPath === '/about' ? 'class="active"' : ''; ?>>Über uns</a></li>
-            <li><a href="/news" <?php echo $currentPath === '/news' ? 'class="active"' : ''; ?>>News</a></li>
-            <li><a href="/photogalerie" <?php echo $currentPath === '/photogalerie' ? 'class="active"' : ''; ?>>Fotogalerie</a></li>
-            <li><a href="/contacts" <?php echo $currentPath === '/contacts' ? 'class="active"' : ''; ?>>Kontakt</a></li>
+            <li><a href="/" <?php echo $currentPath === '/' ? 'class="active" aria-current="page"' : ''; ?>>Home</a></li>
+            <li><a href="/about" <?php echo $currentPath === '/about' ? 'class="active" aria-current="page"' : ''; ?>>Über uns</a></li>
+            <li><a href="/chibicon" <?php echo $currentPath === '/chibicon' ? 'class="active" aria-current="page"' : ''; ?>>Chibicon</a></li>
+            <li><a href="/news" <?php echo $currentPath === '/news' ? 'class="active" aria-current="page"' : ''; ?>>News</a></li>
+            <li><a href="/photogalerie" <?php echo $currentPath === '/photogalerie' ? 'class="active" aria-current="page"' : ''; ?>>Fotogalerie</a></li>
+            <li><a href="/contacts" <?php echo $currentPath === '/contacts' ? 'class="active" aria-current="page"' : ''; ?>>Kontakt</a></li>
         </ul>
     </nav>
 </header>
