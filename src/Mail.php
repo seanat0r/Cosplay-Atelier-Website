@@ -10,11 +10,84 @@ require_once __DIR__ . '/MicrosoftOAuthTokenProvider.php';
 class Mail
 {
     private string $recipientName = "Cosplay-Atelier Vorstand";
-    private int $rateLimit = 3;
+
+    private string $rateLimitFilePath = BASE_PATH . "/var/rateLimit.json";
+
+    /**
+     * Global Rate limit per Minute
+     * @var int
+     */
+    private int $globalRateLimitPerMinute = 5;
+
+    /**
+     * Global time window for Rate limit
+     * @var int
+     */
+    private int $windowInSeconds = 60;
+
+    private array $timestamps = [];
     private string $allowedOrigin = "https://cosplay-atelier.ch";
 
     public function __construct( private readonly PHPMailer $mailer = new PHPMailer(true))
     {
+    }
+
+    private function rateLimit(Response $response): bool|Response
+    {
+        $dir = dirname($this->rateLimitFilePath);
+        if (!is_dir($dir) && !@mkdir($dir, 0755, true) && !is_dir($dir)) {
+            return $this->reportError($response, 500, 'Internal Server Error');
+        }
+
+        $file = @fopen($this->rateLimitFilePath, 'c+');
+        if ($file === false) {
+            return $this->reportError($response, 500, 'Internal Server Error');
+        }
+
+        $locked = false;
+        try {
+            $locked = flock($file, LOCK_EX);
+            if (!$locked) {
+                throw new RuntimeException('Cannot lock rate limit file');
+            }
+
+            rewind($file);
+            $json = stream_get_contents($file);
+            if ($json === false) {
+                throw new RuntimeException('Cannot read rate limit file');
+            }
+
+            $timestamps = $json === '' ? [] : json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+            if (!is_array($timestamps)) {
+                throw new RuntimeException('Invalid rate limit file');
+            }
+
+            $now = time();
+            $this->timestamps = array_values(array_filter(
+                $timestamps,
+                fn($time) => is_int($time) && $time <= $now && ($now - $time) < $this->windowInSeconds
+            ));
+
+            if (count($this->timestamps) >= $this->globalRateLimitPerMinute) {
+                return $this->reportError($response, 429, 'Too many requests');
+            }
+
+            $this->timestamps[] = $now;
+            $updated = json_encode($this->timestamps, JSON_THROW_ON_ERROR);
+            rewind($file);
+            if (!ftruncate($file, 0) || fwrite($file, $updated) !== strlen($updated) || !fflush($file)) {
+                throw new RuntimeException('Cannot write rate limit file');
+            }
+
+            return true;
+        } catch (Throwable $e) {
+            return $this->reportError($response, 500, 'Internal Server Error');
+        } finally {
+            if ($locked) {
+                flock($file, LOCK_UN);
+            }
+            fclose($file);
+        }
     }
 
     /**
@@ -36,7 +109,13 @@ class Mail
         }
         $_SESSION['form_error'] = $message;
         $_SESSION['form_error_status'] = $code;
-        $_SESSION['form_old'] = $_POST;
+        $_SESSION['form_old'] = [];
+
+        // limit the size of this session and set the value (if its to high set it to null)
+        foreach (['name' => 400, 'adresse' => 800, 'plz' => 800, 'birthdate' => 10, 'telefon' => 80, 'email' => 254] as $field => $maxBytes) {
+            $value = $_POST[$field] ?? null;
+            $_SESSION['form_old'][$field] = is_string($value) && strlen($value) <= $maxBytes ? $value : null;
+        }
 
         return $response
             ->withHeader('Location', "/contacts#forms")
@@ -100,29 +179,6 @@ class Mail
     }
 
     /**
-     * Only 3 Mails are allowed
-     * @param Response $response
-     * @return bool|Response true if successfull
-     */
-    private function rateLimitCheck(Response $response): bool|Response
-    {
-        $now = time();
-        if (!isset($_SESSION['rate_limit'])) {
-            $_SESSION['rate_limit'] = [];
-        }
-
-        $_SESSION['rate_limit'] = array_filter(
-            $_SESSION['rate_limit'],
-            fn($time) => ($now - $time) < 3600
-        );
-
-        if (count($_SESSION['rate_limit']) >= $this->rateLimit) {
-            return $this->reportError($response, 429, "Rate limit exceeded");
-        }
-        return true;
-    }
-
-    /**
      * Validate the Body from $_POST
      * @param Response $response
      * @return array|Response if successfull return an arry with the body elements
@@ -142,13 +198,13 @@ class Mail
 
         // plz
         $plz = $this->cleanStringInput($_POST['plz'] ?? null);
-        if (empty($plz) || mb_strlen($plz) < 4) {
+        if (empty($plz) || mb_strlen($plz) < 4 || mb_strlen($plz) > 200) {
             $failed[] = "plz/city is invalid";
         }
 
         //address
         $address = $this->cleanStringInput($_POST['adresse'] ?? null);
-        if (empty($address) || mb_strlen($plz) > 200) {
+        if (empty($address) || mb_strlen($address) > 200) {
             $failed[] = "address is invalid";
         }
         if (!$this->hasStringBraks($address)) {
@@ -163,6 +219,9 @@ class Mail
         } else {
             $age = $birthday->diff(new DateTime())->y;
             if ($age < 5 || $age > 120) {
+                $failed[] = "birthday is unrealistic";
+            }
+            if ($birthday > new DateTime('today')) {
                 $failed[] = "birthday is unrealistic";
             }
             $birthday = $birthday->format('d.m.Y');
@@ -212,6 +271,15 @@ class Mail
      */
     public function sendMail(Request $request, Response $response, array $args): Response
     {
+        ini_set('session.use_strict_mode', '1');
+        session_set_cookie_params([
+            'lifetime' => 0,
+            'path' => '/',
+            'domain' => '',
+            'secure' => false,      // Production over HTTPS (set to true)
+            'httponly' => true,
+            'samesite' => 'strict',
+        ]);
         session_start();
 
         $originResult = $this->originCheck($response);
@@ -224,14 +292,14 @@ class Mail
             return $honeypotResult;
         }
 
-        $rateLimitResult = $this->rateLimitCheck($response);
-        if ($rateLimitResult instanceof Response) {
-            return $rateLimitResult;
-        }
-
         $data = $this->inputValidationCheck($response);
         if ($data instanceof Response) {
             return $data;
+        }
+
+        $rateLimitResult = $this->rateLimit($response);
+        if ($rateLimitResult instanceof Response) {
+            return $rateLimitResult;
         }
 
         try {
@@ -323,7 +391,6 @@ class Mail
 
             $this->mailer->send();
 
-            $_SESSION['rate_limit'][] = time();
             $_SESSION["form_success"] = "success";
             return $response
                 ->withHeader('Location', "/contacts")

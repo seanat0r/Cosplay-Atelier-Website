@@ -6,6 +6,7 @@ use Slim\Routing\RouteCollectorProxy;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Exception\HttpNotFoundException;
 use Slim\Exception\HttpException;
+use \Slim\Exception\HttpInternalServerErrorException;
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../config.php';
@@ -41,9 +42,13 @@ $errorMiddleware->setDefaultErrorHandler(
             return $standardHandler($request, $e, ...$options);
         }
 
+        $publicMessage = $e instanceof HttpInternalServerErrorException
+            ? $e->getMessage()
+            : "Internal Server Error";
+
         error_log((string) $e);
         $response = $app->getResponseFactory()->createResponse();
-        return $pageLoader->serverError($request, $response, ['message' => $e->getMessage()]);
+        return $pageLoader->serverError($request, $response, ['message' => $publicMessage]);
     }
 );
 

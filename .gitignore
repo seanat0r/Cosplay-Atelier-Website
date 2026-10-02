@@ -18,3 +18,4 @@ docs/README_ftp.md
 
 *.log
 .test_smpt.txt
+var/rateLimit.json

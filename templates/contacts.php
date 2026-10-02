@@ -1,6 +1,15 @@
 <?php
 declare(strict_types=1);
 $pageTitle = "Cosplay-Atelier | Kontakt & Mitgliedschaft";
+ini_set('session.use_strict_mode', '1');
+session_set_cookie_params([
+        'lifetime' => 0,
+        'path' => '/',
+        'domain' => '',
+        'secure' => false,      // Production over HTTPS (set to true)
+        'httponly' => true,
+        'samesite' => 'strict',
+]);
 session_start();
 // Old session data
 $formFailed = $_SESSION["form_error"] ?? null;
@@ -97,32 +106,32 @@ unset($_SESSION["form_error"], $_SESSION["form_error_status"], $_SESSION["form_o
                 <form action="/send_mail" method="POST" class="mitglied-form">
                     <div class="form-group">
                         <label for="name">Name und Vorname<span class="info-symbol">*</span>:</label>
-                        <input type="text" id="name" name="name" value="<?= $formOldData["name"] ?? "" ?>" required>
+                        <input type="text" id="name" name="name" value="<?= htmlspecialchars($formOldData["name"] ?? "") ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="adresse">Adresse<span class="info-symbol">*</span>:</label>
-                        <input type="text" autocomplete="street-address" id="adresse" name="adresse" value="<?= $formOldData["adresse"] ?? "" ?>" required>
+                        <input type="text" autocomplete="street-address" id="adresse" name="adresse" value="<?= htmlspecialchars($formOldData["adresse"] ?? "") ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="plz">PLZ und Ort<span class="info-symbol">*</span>:</label>
-                        <input type="text" autocomplete="postal-code"  id="plz" name="plz" value="<?= $formOldData["plz"] ?? "" ?>" required>
+                        <input type="text" autocomplete="postal-code"  id="plz" name="plz" value="<?= htmlspecialchars($formOldData["plz"] ?? "") ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="birthdate">Geburtsdatum<span class="info-symbol">*</span>:</label>
-                        <input type="date" autocomplete="bday" id="birthdate" name="birthdate" value="<?= $formOldData["birthdate"] ?? "" ?>" required>
+                        <input type="date" autocomplete="bday" id="birthdate" name="birthdate" value="<?= htmlspecialchars($formOldData["birthdate"] ?? "") ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="telefon">Telefonnummer<span class="info-symbol">*</span>:</label>
-                        <input type="tel" autocomplete="tel" id="telefon" name="telefon" value="<?= $formOldData["telefon"] ?? "" ?>" required>
+                        <input type="tel" autocomplete="tel" id="telefon" name="telefon" value="<?= htmlspecialchars($formOldData["telefon"] ?? "") ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">E-Mail-Adresse<span class="info-symbol">*</span>:</label>
-                        <input type="email" autocomplete="email" id="email" name="email" value="<?= $formOldData["email"] ?? "" ?>" required>
+                        <input type="email" autocomplete="email" id="email" name="email" value="<?= htmlspecialchars($formOldData["email"] ?? "") ?>" required>
                     </div>
 
                     <div class="form-group checkbox">

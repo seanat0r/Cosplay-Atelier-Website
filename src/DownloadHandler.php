@@ -22,9 +22,20 @@ class DownloadHandler
      *                                          the check successfull you get a `path` (string), if it fails you get
      *                                          `exception` (string) <- this has the exption message from server!
      */
-    private function checkFile(?string $rawFile): array
+    private function checkFile(mixed $rawFile): array
     {
-        if ($rawFile === null || trim($rawFile) === '') {
+        // NOTE: we use 404 instead of 400, because of simplicity
+        // `is_string` also checks for null
+        if (!is_string($rawFile)) {
+            return [
+                'success' => false,
+                'message' => "Wrong file format",
+                "code" => 404,
+            ];
+        }
+
+        //check for non-empty string
+        if (trim($rawFile) === '') {
             return [
                 'success' => false,
                 'message' => 'File not found',
